@@ -1,3 +1,3 @@
-"""Number of seconds in a year"""
+"""BASIC - Number of seconds in a year"""
 
 print(365 * 24 * 60 * 60)
