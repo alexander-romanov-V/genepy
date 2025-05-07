@@ -6,4 +6,4 @@ whetting_your_appetite = "Python is an easy to learn, powerful programming langu
 print(len(whetting_your_appetite.split()))
 
 # Solution 2 - use RegEx
-print(len(__import__("re").findall(r"[a-zA-Z]+", whetting_your_appetite)))
+print(len(__import__("re").findall(r"\w+", whetting_your_appetite)))
