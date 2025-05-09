@@ -17,8 +17,12 @@ print(*(n for n in range(0, 1001, 7) if digit_sum(n) % 3 == 0), sep="\n")
 # Solution 2
 print(*(n for n in range(0, 1001, 7) if sum(map(int, str(n))) % 3 == 0), sep="\n")
 
-# Solution 2
+
+# Number is divisible by 3 if it's digits sum are divisible by 3
+# Therefore a number that is divisible by both 7 and 3 is divisible by 21 [21 = 7 * 3]
+
+# Solution 3
 print(*(n for n in range(0, 1001, 21)), sep="\n")
 
-# Solution 2b
+# Solution 3b
 print("\n".join(f"{n}" for n in range(0, 1001, 21)))
