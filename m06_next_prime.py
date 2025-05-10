@@ -3,16 +3,16 @@
 # Provide a script that computes, then prints the first prime number greater than 100_000_000.
 
 # Solution 1 - too slow for large numbers
-def next_prime():
-    """Returns next prime"""
-    yield 2
-    primes = [2]
-    i = 3
-    while True:
-        if all(i % p > 0 for p in primes):
-            primes.append(i)
-            yield i
-        i += 2
+# def next_prime():
+#     """Returns next prime"""
+#     yield 2
+#     primes = [2]
+#     i = 3
+#     while True:
+#         if all(i % p > 0 for p in primes):
+#             primes.append(i)
+#             yield i
+#         i += 2
 
 
 # Solution 2
