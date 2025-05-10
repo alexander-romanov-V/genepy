@@ -7,9 +7,9 @@ def from_roman_numeral1(roman_numeral: str):
     nums = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
     ns = list(map(nums.get, roman_numeral.strip().upper()))
     for i in range(len(ns) - 1):
-        if ns[i] < ns[i + 1]:
-            ns[i] *= -1
-    return sum(ns)
+        if ns[i] < ns[i + 1]: # type: ignore
+            ns[i] *= -1 # type: ignore
+    return sum(ns) # type: ignore
 
 
 # Solution 2
