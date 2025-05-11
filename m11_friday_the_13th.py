@@ -7,6 +7,8 @@ import datetime
 def inc_month(d):
     """Increment a month"""
     return datetime.date(d.year + d.month // 12, d.month % 12 + 1, d.day)
+
+
 def friday_the_13th(today=datetime.datetime.today().date()):
     """Returns the date of the next friday the 13th."""
     if today.day > 13:
@@ -37,9 +39,9 @@ def friday_the_13th3(today=datetime.datetime.now().date()):
 # Solution 4 - good enough
 def friday_the_13th4(today=datetime.datetime.today().date()):
     """Returns the date of the next friday the 13th."""
-    while today.weekday() is not 4:
+    while today.weekday() != 4:
         today += datetime.timedelta(1)
-    while today.day is not 13:
+    while today.day != 13:
         today += datetime.timedelta(7)
     return str(today)
 
