@@ -8,6 +8,7 @@ def normalize(s):
     """Removes diacritics, combining characters, and non letters chars and sort"""
     return sorted([c for c in unicodedata.normalize("NFKD", s.lower())
                 if c.isalpha() and not unicodedata.combining(c)])
+    # Actually unicodedata.combining(c) is not necessary, because c.isalpha() also removes combining chars
 def is_anagram(left, right):
     """Returns True if the letters of one word are a rearrangement of the letters of the other"""
     return normalize(left) == normalize(right)
