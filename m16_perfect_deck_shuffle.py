@@ -30,6 +30,7 @@ def perfect_shuffle4(deck: list):
     shuffled[::2], shuffled[1::2] = deck[:m], deck[m:]
     return shuffled
 
+
 # Solution 5
 def perfect_shuffle5(deck: list):
     """Splitting a deck of cards into equal halves, and perfectly interleaving them."""
