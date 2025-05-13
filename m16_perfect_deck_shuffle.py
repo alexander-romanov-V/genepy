@@ -14,27 +14,30 @@ def perfect_shuffle(deck: list):
 # Solution 2
 def perfect_shuffle2(deck: list):
     """Splitting a deck of cards into equal halves, and perfectly interleaving them."""
-    return list(__import__("itertools").chain(*zip(deck[: len(deck) // 2], deck[len(deck) // 2 :])))
+    l = len(deck) // 2
+    return list(__import__("itertools").chain(*zip(deck[:l], deck[l:])))
 
 
 # Solution 3
 def perfect_shuffle3(deck: list):
     """Splitting a deck of cards into equal halves, and perfectly interleaving them."""
-    return [c for x in zip(deck[: len(deck) // 2], deck[len(deck) // 2 :]) for c in x]
+    l = len(deck) // 2
+    return [c for x in zip(deck[:l], deck[l:]) for c in x]
 
 
 # Solution 4
 def perfect_shuffle4(deck: list):
     """Splitting a deck of cards into equal halves, and perfectly interleaving them."""
-    shuffled, m = deck[:], len(deck) // 2
-    shuffled[::2], shuffled[1::2] = deck[:m], deck[m:]
+    shuffled, l = deck[:], len(deck) // 2
+    shuffled[::2], shuffled[1::2] = deck[:l], deck[l:]
     return shuffled
 
 
 # Solution 5
 def perfect_shuffle5(deck: list):
     """Splitting a deck of cards into equal halves, and perfectly interleaving them."""
-    return [deck[i] for r in range(len(deck) // 2) for i in (r, r + len(deck) // 2)]
+    l = len(deck) // 2
+    return [deck[i] for r in range(l) for i in (r, r + l)]
 
 
 if __name__ == "__main__":
