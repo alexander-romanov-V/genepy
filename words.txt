@@ -1,0 +1,1 @@
+Your script should be able to open a file named words.txt located in the same folder, compute the frequency of every ascii lowercase letters in its content, and display them according to this format:
