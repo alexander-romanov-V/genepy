@@ -2,7 +2,6 @@
 
 # Solution 1
 from sys import argv
-
 if len(argv) == 3:
     print(int(argv[1]) + int(argv[2]))
     print(sum([int(i) for i in argv[1:]]))
