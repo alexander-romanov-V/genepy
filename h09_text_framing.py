@@ -1,10 +1,13 @@
-"""HARD - Roman Numerals"""
+"""HARD - Text Framing"""
 
-from dataclasses import dataclass, replace
+from dataclasses import dataclass
+from datetime import datetime
 
 
 @dataclass
 class Frame:
+    """Frame data class"""
+
     top: str = "-"
     left: str = "|"
     bottom: str = "-"
@@ -35,14 +38,11 @@ def frame_text2(text: str, frame: Frame) -> str:
     """Frame text with frame"""
     lines = text.splitlines()
     length = max(len(line) for line in lines)
-    result = [f"{frame.top_left}{frame.top * length}{frame.top_right}"]
-    result.extend(f"{frame.left}{line:<{length}}{frame.right}" for line in lines)
-    result.append(f"{frame.bottom_left}{frame.bottom * length}{frame.bottom_right}")
-    return "\n".join(result)
+    res = [f"{frame.top_left}{frame.top * length}{frame.top_right}"]
+    res.extend(f"{frame.left}{line:<{length}}{frame.right}" for line in lines)
+    res.append(f"{frame.bottom_left}{frame.bottom * length}{frame.bottom_right}")
+    return "\n".join(res)
 
-
-
-from datetime import datetime
 
 if __name__ == "__main__":
     print(frame_text(f"It is {datetime.now():%H:%I:%S}.", fancy_frame))
@@ -54,7 +54,9 @@ if __name__ == "__main__":
 
     print(
         frame_text(
-            "      *\n     ***\n    *****\n   *******\n    *****\n   *******\n  *********\n ***********\n*************\n     |||\n     |||",
+            "      *\n     ***\n    *****\n   *******\n    *****\n"
+            "   *******\n  *********\n ***********\n*************\n"
+            "     |||\n     |||",
             fancy_frame,
         )
     )
