@@ -1,6 +1,5 @@
 """HARD - Calculator"""
 
-
 # Solution 1 - my first
 """
 from sys import argv
