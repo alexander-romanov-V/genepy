@@ -42,6 +42,5 @@ if __name__ == "__main__":
         print(*filtered(range(101), lambda x: x % d == 0), sep=", ")
 
     # Solution 2
-    print(", ".join(map(str, filtered2(range(101), lambda i: i % 3 == 0))))
-    print(", ".join(map(str, filtered2(range(101), lambda i: i % 5 == 0))))
-    print(", ".join(map(str, filtered2(range(101), lambda i: i % 15 == 0))))
+    for d in (3, 5, 15):
+        print(", ".join(map(str, filtered2(range(101), lambda i: i % d == 0))))
