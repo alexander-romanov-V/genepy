@@ -115,6 +115,9 @@ def solution2() -> int:
 
 
 if __name__ == "__main__":
-    # print(*nums, sep="\n")
-    print(solution1())
-    print(solution2())
+    for p in [
+        solution1,
+        solution2,
+    ]:
+        assert p() == 70600674
+        print(f"{p.__name__:20} \033[92m[ PASS ]\033[0m")
