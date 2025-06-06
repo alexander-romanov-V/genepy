@@ -1,22 +1,22 @@
 """HARD - Lambda expressions"""
 
-# def is_even(x):
-#     """True if x is even"""
-#     return x % 2 == 0
+def is_even(x):
+    """True if x is even"""
+    return x % 2 == 0
 
 
-# def is_odd(x):
-#     """True if x is odd"""
-#     return x % 2 == 1
+def is_odd(x):
+    """True if x is odd"""
+    return x % 2 == 1
 
 
-# def test():
-#     """Test filtered function"""
-#     items = [1, 2, 3, 4, 5, 6]
-#     print(filtered(items, lambda x: x % 2 == 0))
-#     print(filtered(items, lambda x: x % 2 == 1))
-#     print(filtered(items, is_even))
-#     print(filtered(items, is_odd))
+def test():
+    """Test filtered function"""
+    items = [1, 2, 3, 4, 5, 6]
+    print(filtered(items, lambda x: x % 2 == 0))
+    print(filtered(items, lambda x: x % 2 == 1))
+    print(filtered(items, is_even))
+    print(filtered(items, is_odd))
 
 
 # Solution 1 - my
@@ -32,6 +32,8 @@ def filtered2(items, key):
 
 
 if __name__ == "__main__":
+    test()
+
     # Solution 1 - my
     print(", ".join([str(x) for x in filtered(range(101), lambda x: x % 3 == 0)]))
     print(", ".join([str(x) for x in filtered(range(101), lambda x: x % 5 == 0)]))
