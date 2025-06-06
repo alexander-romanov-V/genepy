@@ -78,7 +78,6 @@ def solution1():
 def solution2() -> int:
     """Resolve the 11th euler problem"""
     maximum = 0
-
     # Horizontal in row.
     for row_i in range(20):
         for col_i in range(16):
@@ -86,7 +85,6 @@ def solution2() -> int:
             for i in range(4):
                 product *= e[row_i][col_i + i]
             maximum = max(maximum, product)
-
     # Vertical in column.
     for row_i in range(16):
         for col_i in range(20):
@@ -94,7 +92,6 @@ def solution2() -> int:
             for i in range(4):
                 product *= e[row_i + i][col_i]
             maximum = max(maximum, product)
-
     # Diagonal.
     for row_i in range(16):
         for col_i in range(16):
@@ -102,7 +99,6 @@ def solution2() -> int:
             for i in range(4):
                 product *= e[row_i + i][col_i + i]
             maximum = max(maximum, product)
-
     # Other diagonal.
     for row_i in range(4, 20):
         for col_i in range(16):
@@ -110,7 +106,6 @@ def solution2() -> int:
             for i in range(4):
                 product *= e[row_i - i][col_i + i]
             maximum = max(maximum, product)
-
     return maximum
 
 
