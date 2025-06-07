@@ -96,7 +96,7 @@ def solution1():
     return res
 
 
-# Solution 2
+# Solution 2 - simple
 def solution2() -> int:
     """Resolve the 11th euler problem"""
     maximum = 0
