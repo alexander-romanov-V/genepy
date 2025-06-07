@@ -153,6 +153,7 @@ def solution3():
     return max(muls)
 
 
+
 if __name__ == "__main__":
     for p in [
         solution1,
