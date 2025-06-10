@@ -30,6 +30,31 @@ def sidebyside2(left, right, width=79):
     return "\n".join(res)
 
 
+# Solution 3 - improved 1
+import itertools
+def sidebyside3(left, right, width=79):
+    """Combines two strings so they are displayed side by side,
+    separated by a column of pipe (|) symbols"""
+    w = (width - 1) // 2
+    text = (textwrap.wrap(text, w) for text in (left, right))
+    lines = itertools.zip_longest(*text, fillvalue="")
+    return "\n".join(f"{l:<{w}}|{r:<{w}}" for l, r in lines)
+
+
+# Solution 4 - improved 2
+import itertools
+def sidebyside4(left, right, width=79):
+    """Combines two strings so they are displayed side by side,
+    separated by a column of pipe (|) symbols"""
+    w = (width - 1) // 2
+    return "\n".join(
+        f"{l:<{w}}|{r:<{w}}"
+        for l, r in itertools.zip_longest(
+            *(textwrap.wrap(text, w) for text in (left, right)), fillvalue=""
+        )
+    )
+
+
 if __name__ == "__main__":
     left = (
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
@@ -47,7 +72,7 @@ if __name__ == "__main__":
         " Ut et porta augue, et convallis ante."
     )
 
-    print(sidebyside2(left, right))
-    print(sidebyside2(left, right, 50))
-    print(sidebyside2(left, right, 100))
-    print(sidebyside2(left, right, width=20))
+    print(sidebyside4(left, right))
+    print(sidebyside4(left, right, 50))
+    print(sidebyside4(left, right, 100))
+    print(sidebyside4(left, right, width=20))
