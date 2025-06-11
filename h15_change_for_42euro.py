@@ -52,6 +52,62 @@ def changes4(amount, coins):
             
     return dp[amount]
 
+# Other Solutions:
+# ----------------------------------------------------
+
+# Python program for coin change problem.
+# using recursion
+
+def countRecur5(coins, n, sum):
+  
+    # If sum is 0 then there is 1 solution
+    # (do not include any coin)
+    if sum == 0:
+        return 1
+
+    # 0 ways in the following two cases
+    if sum < 0 or n == 0:
+        return 0
+
+    # count is sum of solutions (i)
+    # including coins[n-1] (ii) excluding coins[n-1]
+    return countRecur5(coins, n, sum - coins[n - 1]) + \
+  			countRecur5(coins, n - 1, sum)
+
+def count5(coins, sum):
+    return countRecur5(coins, len(coins), sum)
+
+# ----------------------------------------------------
+
+# Python program for coin change problem.
+# using memoization
+def countRecur6(coins, n, sum, memo):
+  
+    # If sum is 0 then there is 1 solution
+    # (do not include any coin)
+    if sum == 0:
+        return 1
+
+    # 0 ways in the following two cases
+    if sum < 0 or n == 0:
+        return 0
+
+    # If the subproblem is previously calculated then
+    # simply return the result
+    if memo[n - 1][sum] != -1:
+        return memo[n - 1][sum]
+
+    # count is sum of solutions (i)
+    # including coins[n-1] (ii) excluding coins[n-1]
+    memo[n - 1][sum] = (countRecur6(coins, n, sum - coins[n - 1], memo) + 
+                        countRecur6(coins, n - 1, sum, memo))
+    return memo[n - 1][sum]
+
+def count6(coins, sum):
+    memo = [[-1 for _ in range(sum + 1)] for _ in range(len(coins))]
+    return countRecur6(coins, len(coins), sum, memo)
+
+# ----------------------------------------------------
 
 if __name__ == "__main__":
     for y in range(2, 43):
