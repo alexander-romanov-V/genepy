@@ -3,6 +3,8 @@
 
 # Solution 3
 class TemperatureAttr:
+    """Attributes for temperatures"""
+
     def __init__(self, from_kelvin, to_kelvin):
         self.from_kelvin = from_kelvin
         self.to_kelvin = to_kelvin
@@ -15,6 +17,8 @@ class TemperatureAttr:
 
 
 class Temperature:
+    """Temperature class can work with Celsius, Kelvin, and Fahrenheit degrees"""
+
     def __init__(self):
         self.kelvin = 0
 
