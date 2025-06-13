@@ -29,13 +29,17 @@ class Temperature:
 
 if __name__ == "__main__":
     t = Temperature()
+
     t.celsius = -1
     print(t.celsius)
     t.celsius += 1
     print(t.celsius)
+    
     print(t.kelvin)
     print(t.fahrenheit)
+    
     t.fahrenheit += 1
     print(t.fahrenheit)
+    
     t.kelvin += 1
     print(t.kelvin)
