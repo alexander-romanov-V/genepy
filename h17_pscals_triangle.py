@@ -3,6 +3,7 @@
 
 # Solution 1 - my first
 def print_pascal_triangle(height):
+    """Print Pascal's triangle"""
     t = []
     for h in range(height):
         tt = [1] * (h + 1)
@@ -11,10 +12,9 @@ def print_pascal_triangle(height):
         t.append(tt)
     l = len(str(max(t[height - 1]))) + 1
     l += l % 2
-    ll = l // 2
 
     for h in range(height):
-        print(" " * (ll * (height - h - 1)), end="")
+        print(" " * (l // 2 * (height - h - 1)), end="")
         for x in range(h + 1):
             print(f"{t[h][x]:^{l}}", end="")
         print()
