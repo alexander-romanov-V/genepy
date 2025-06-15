@@ -20,6 +20,17 @@ def print_pascal_triangle(height):
         print()
 
 
+# Solution - not aligned
+def print_pascal_triangle2(height):
+    if height == 1:
+        print(1)
+        return [1]
+    prev = print_pascal_triangle2(height - 1)
+    bottom = [1] + [a + b for a, b in zip(prev[:-1], prev[1:])] + [1]
+    print(*bottom)
+    return bottom
+
+
 if __name__ == "__main__":
-    for i in range(1, 10):
-        print_pascal_triangle(i)
+    for i in range(1, 11):
+        print_pascal_triangle2(i)
