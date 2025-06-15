@@ -26,9 +26,9 @@ def print_pascal_triangle2(height):
     t = [[1]]
     for h in range(1, height):
         t.append([1] + [sum(t[h - 1][x - 1 : x + 1]) for x in range(1, h)] + [1])
-    l = (len(str(max(t[height - 1]))) + 2) // 2 * 2
+    l = (len(str(max(t[height - 1]))) + 2) // 2
     for h in range(height):
-        print(" " * (l // 2 * (height - h - 1)), *[f"{t[h][x]:^{l}}" for x in range(h + 1)], sep="")
+        print(" " * (l * (height - h - 1)), *[f"{t[h][x]:^{l*2}}" for x in range(h + 1)], sep="")
 
 
 # # Solution - not aligned
