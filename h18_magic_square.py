@@ -41,6 +41,32 @@ def fill_magic_square(square: np.array) -> None:  # type: ignore
                         square[j, i] = m - sum(np.flipud(square).diagonal())
 
 
+# Solution 2 - my second
+def fill_magic_square2(square: np.array) -> None:  # type: ignore
+    """Fill 0's in magic square"""
+    m = max(
+        *np.sum(square, axis=0),
+        *np.sum(square, axis=1),
+        sum(np.diag(square)),
+        sum(np.flipud(square).diagonal()),
+    )
+    indices = list(zip(*np.where(square == 0)))
+    while 0 in square:
+        for x, y in indices:
+            if square[x, y] == 0:
+                if np.count_nonzero(square[x, :] == 0) == 1:
+                    square[x, y] = m - sum(square[x, :])
+                elif np.count_nonzero(square[:, y] == 0) == 1:
+                    square[x, y] = m - sum(square[:, y])
+                elif x == y and np.count_nonzero(np.diag(square) == 0) == 1:
+                    square[x, y] = m - sum(np.diag(square))
+                elif (
+                    x + y == square.shape[0] - 1
+                    and np.count_nonzero(np.flipud(square).diagonal() == 0) == 1
+                ):
+                    square[x, y] = m - sum(np.flipud(square).diagonal())
+
+
 if __name__ == "__main__":
     easy_square = np.array(
         [
@@ -112,6 +138,7 @@ if __name__ == "__main__":
 
     for p in [
         fill_magic_square,
+        fill_magic_square2,
     ]:
         for arr in [
             easy_square.copy(),
