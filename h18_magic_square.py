@@ -49,9 +49,7 @@ def fill_magic_square2(square: np.array) -> None:  # type: ignore
         sum(np.diag(square)),
         sum(np.flipud(square).diagonal()),
     )
-    
     indices = list(zip(*np.where(square == 0)))
-    
     while 0 in square:
         for x, y in indices:
             if square[x, y] == 0:
