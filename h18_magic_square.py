@@ -108,7 +108,6 @@ if __name__ == "__main__":
             ],
         ]
     )
-
     harder_square = np.array(
         [
             [
@@ -125,7 +124,6 @@ if __name__ == "__main__":
             ],
         ]
     )
-
     hard_square1 = np.array(
         [
             [
@@ -142,7 +140,6 @@ if __name__ == "__main__":
             ],
         ]
     )
-
     hard_square2 = np.array(
         [
             [
