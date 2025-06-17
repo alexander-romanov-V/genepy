@@ -2,7 +2,6 @@
 
 import numpy as np
 
-
 # Solution 1 - my first
 def fill_magic_square(square: np.array) -> None:  # type: ignore
     """Fill 0's in magic square"""
