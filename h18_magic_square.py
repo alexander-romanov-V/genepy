@@ -84,7 +84,6 @@ def fill_magic_square3(square: np.array) -> None:  # type: ignore
     m = search_magic_constant(square)
     n = square.shape[0]
     diag_mask = np.diag(np.full((n,), True))
-
     while np.any(square == 0):
         for view in square, np.rot90(square):
             for row in view:
