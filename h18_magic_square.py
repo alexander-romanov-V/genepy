@@ -158,7 +158,6 @@ if __name__ == "__main__":
             ],
         ]
     )
-
     for p in [
         fill_magic_square,
         fill_magic_square2,
