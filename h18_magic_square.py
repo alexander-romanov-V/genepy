@@ -70,14 +70,12 @@ def fill_magic_square2(square: np.array) -> None:  # type: ignore
 def search_magic_constant(square):
     """Find magic square number"""
     n = square.shape[0]
-    
     for view in square, np.rot90(square):
         for row in view:
             if np.count_nonzero(row) == n:
                 return row.sum()
         if np.count_nonzero(np.diag(view)) == n:
             return np.diag(view).sum()
-        
     raise ValueError("Square has too many holes!")
 
 
