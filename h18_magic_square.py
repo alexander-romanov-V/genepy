@@ -73,7 +73,7 @@ def fill_magic_square2(square: np.array) -> None:  # type: ignore
 def search_magic_constant(square):
     """Find magic square number"""
     n = square.shape[0]
-    
+
     for view in square, np.rot90(square):
         for row in view:
             if np.count_nonzero(row) == n:
@@ -88,6 +88,7 @@ def fill_magic_square3(square: np.array) -> None:  # type: ignore
     m = search_magic_constant(square)
     n = square.shape[0]
     diag_mask = np.diag(np.full((n,), True))
+
     while np.any(square == 0):
         for view in square, np.rot90(square):
             for row in view:
@@ -162,6 +163,7 @@ if __name__ == "__main__":
             ],
         ]
     )
+    
     for p in [
         fill_magic_square,
         fill_magic_square2,
