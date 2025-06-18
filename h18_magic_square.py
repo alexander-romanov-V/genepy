@@ -52,7 +52,7 @@ def fill_magic_square2(square: np.array) -> None:  # type: ignore
         sum(np.flipud(square).diagonal()),
     )
     indices = list(zip(*np.where(square == 0)))
-    
+
     while 0 in square:
         for x, y in indices:
             if square[x, y] == 0:
@@ -73,6 +73,7 @@ def fill_magic_square2(square: np.array) -> None:  # type: ignore
 def search_magic_constant(square):
     """Find magic square number"""
     n = square.shape[0]
+    
     for view in square, np.rot90(square):
         for row in view:
             if np.count_nonzero(row) == n:
