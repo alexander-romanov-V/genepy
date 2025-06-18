@@ -9,7 +9,7 @@ def fill_magic_square(square: np.array) -> None:  # type: ignore
     n = square.shape[0]
     # m = n * (n**2 + 1) // 2 # Only for normal magic square
     m = 0
-    
+
     for j in range(n):
         if np.count_nonzero(square[j, :]) == n:
             m = sum(square[j, :])
@@ -52,6 +52,7 @@ def fill_magic_square2(square: np.array) -> None:  # type: ignore
         sum(np.flipud(square).diagonal()),
     )
     indices = list(zip(*np.where(square == 0)))
+    
     while 0 in square:
         for x, y in indices:
             if square[x, y] == 0:
