@@ -25,19 +25,19 @@ def fill_magic_square(square: np.array) -> None:  # type: ignore
         else:
             raise ValueError("Can't find magic square number - too many blanks")
 
-    while 0 in square:
+    while np.count_nonzero(square) != n**2:
         for j in range(n):
             for i in range(n):
                 if square[j, i] == 0:
-                    if np.count_nonzero(square[j, :] == 0) == 1:
+                    if np.count_nonzero(square[j, :]) == n - 1:
                         square[j, i] = m - sum(square[j, :])
-                    elif np.count_nonzero(square[:, i] == 0 ) == 1:
+                    elif np.count_nonzero(square[:, i]) == n - 1:
                         square[j, i] = m - sum(square[:, i])
-                    elif i == j and np.count_nonzero(square.diagonal() == 0) == 1:
+                    elif i == j and np.count_nonzero(square.diagonal()) == n - 1:
                         square[j, i] = m - sum(square.diagonal())
                     elif (
                         i == n - 1 - j
-                        and np.count_nonzero(np.flipud(square).diagonal() == 0) == 1
+                        and np.count_nonzero(np.flipud(square).diagonal()) == n - 1
                     ):
                         square[j, i] = m - sum(np.flipud(square).diagonal())
 
