@@ -1,6 +1,5 @@
 """HARD - Magic Square"""
 
-
 import numpy as np
 
 
