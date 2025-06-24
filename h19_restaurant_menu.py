@@ -102,5 +102,4 @@ if __name__ == "__main__":
     menu_3 = menu_1 + menu_2
 
     print(menu_3.name)
-
     print(menu_3)
