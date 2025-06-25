@@ -32,6 +32,9 @@ class Dish:
     def __ge__(self, other) -> bool:
         return self.preparation_time >= other.preparation_time
 
+    def __str__(self) -> str:
+        return self.name
+
 
 class Menu:
     """Menu of Dishes in restaurant"""
@@ -74,17 +77,25 @@ class Menu:
 
     def __add__(self, other):
         menu = Menu(self.name + " & " + other.name)
-        menu.dishes = self.dishes.copy() + other.dishes.copy()
+        menu.dishes = self.dishes + other.dishes
+        # menu.dishes = [*self.dishes, *other.dishes]
+        # menu.dishes = self.dishes.copy() + other.dishes.copy() # not needed actually
         return menu
 
     def __str__(self) -> str:
         return (
             "STARTER\n"
-            + "\n".join(d.name for d in self.get_starters())
+            + "\n".join(
+                map(str, sorted(self.get_starters(), key=lambda d: d.preparation_time))
+            )
             + "\n\nDISH\n"
-            + "\n".join(d.name for d in self.get_dishes())
+            + "\n".join(
+                map(str, sorted(self.get_dishes(), key=lambda d: d.preparation_time))
+            )
             + "\n\nDESSERT\n"
-            + "\n".join(d.name for d in self.get_desserts())
+            + "\n".join(
+                map(str, sorted(self.get_desserts(), key=lambda d: d.preparation_time))
+            )
         )
 
 
@@ -92,12 +103,12 @@ if __name__ == "__main__":
     menu_1 = Menu("One")
     menu_1.add_dish(Dish("eggs & mayonaise", 5, "starter"))
     menu_1.add_dish(Dish("burger", 15, "dish"))
-    menu_1.add_dish(Dish("waffle", 20, "dessert"))
+    menu_1.add_dish(Dish("waffle", 30, "dessert"))
 
     menu_2 = Menu("Two")
     menu_2.add_dish(Dish("salad", 10, "starter"))
     menu_2.add_dish(Dish("pizza", 20, "dish"))
-    menu_2.add_dish(Dish("chocolate cookie", 30, "dessert"))
+    menu_2.add_dish(Dish("chocolate cookie", 20, "dessert"))
 
     menu_3 = menu_1 + menu_2
 
