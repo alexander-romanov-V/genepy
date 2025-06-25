@@ -1,6 +1,7 @@
 """HARD - Restaurant menu"""
 
 # Solution 1 - my first
+
 DishType = ["starter", "dish", "dessert"]
 
 
