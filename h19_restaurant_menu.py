@@ -100,6 +100,7 @@ class Menu:
         )
 
 
+
 if __name__ == "__main__":
     menu_1 = Menu("One")
     menu_1.add_dish(Dish("eggs & mayonaise", 5, "starter"))
