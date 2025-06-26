@@ -6,6 +6,7 @@ from dataclasses import dataclass, field
 
 KINDS = "starter", "dish", "dessert"
 
+
 @dataclass(order=True)
 class Dish:
     name: str = field(compare=False)
@@ -15,11 +16,12 @@ class Dish:
     def __str__(self):
         return self.name
 
+
 @dataclass
 class Menu:
     name: str
     dishes: list[str] = field(default_factory=list)
-    
+
     def add_dish(self, dish):
         self.dishes.append(dish)
 
@@ -28,22 +30,33 @@ class Menu:
 
     def get_starters(self):
         return self._get("starter")
-        
+
     def get_dishes(self):
         return self._get("dish")
-        
+
     def get_desserts(self):
         return self._get("dessert")
-        
+
     def get_minimum_preparation_time(self):
-        return sum(min([dish.preparation_time for dish in self._get(kind)], default=0) for kind in KINDS)
-    
+        return sum(
+            min([dish.preparation_time for dish in self._get(kind)], default=0)
+            for kind in KINDS
+        )
+
     def get_maximum_preparation_time(self):
-        return sum(max([dish.preparation_time for dish in self._get(kind)], default=0) for kind in KINDS)
-        
+        return sum(
+            max([dish.preparation_time for dish in self._get(kind)], default=0)
+            for kind in KINDS
+        )
+
     def __str__(self):
-        return "\n\n".join(dish_type.upper() + "\n" + "\n".join(dish.name for dish in self._get(dish_type)) for dish_type in KINDS)
-        
+        return "\n\n".join(
+            dish_type.upper()
+            + "\n"
+            + "\n".join(dish.name for dish in self._get(dish_type))
+            for dish_type in KINDS
+        )
+
     def __add__(self, other):
         if not isinstance(other, Menu):
             return NotImplemented
