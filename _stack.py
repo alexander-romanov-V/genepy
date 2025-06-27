@@ -30,6 +30,7 @@ s = Stack()
 s.push(1)
 s.push(-2)
 print(s.get_min())
+
 s.pop()
 print(s.get_min())
 s.pop()
