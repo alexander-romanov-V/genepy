@@ -3,17 +3,40 @@
 # Solution 1 - my first
 
 import csv
+import datetime
 
 
 def generate_csv(a_list):
     """Create a csv file called results.csv from a list of tuples"""
-    ...
+    with open("results.csv", "w", encoding="UTF-8", newline="") as f:
+        writer = csv.writer(f, delimiter=",", quotechar='"')
+        if not a_list:
+            return
+        writer.writerow(h[0] for h in a_list[0])
+        for row in a_list:
+            line = []
+            for col in row:
+                match col[0]:
+                    case "date":
+                        line.append(col[1].strftime("%m/%d/%Y"))
+                    case "locations":
+                        line.append(",".join(col[1]))
+                    case _:
+                        line.append(col[1])
+            writer.writerow(line)
 
 
 def parse_csv():
-    """Read and parse a csv file called students.csv and return a list of dictionaries 
+    """Read and parse a csv file called students.csv and return a list of dictionaries
     which will contain the column name as key and the value as value"""
-    ...
+    with open("students.csv", "r", encoding="UTF-8") as f:
+        reader = csv.DictReader(f)
+        res = []
+        for row in reader:
+            row["Birthdate"] = datetime.datetime.strptime(row["Birthdate"], "%m/%d/%Y").date()
+            row["Marks"] = [*map(int, row["Marks"].split(","))]
+            res.append(row)
+    return res
 
 
 if __name__ == "__main__":
@@ -36,9 +59,8 @@ if __name__ == "__main__":
     ]
     generate_csv(meteo)
 
-
     # from <your_solution> import parse_csv
-    parse_csv()
+    print(parse_csv())
     # [{'Birthdate': datetime.date(1815, 12, 10),
     # 'Comments': 'The first one',
     # 'Firstname': 'Ada',
