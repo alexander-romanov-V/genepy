@@ -33,7 +33,9 @@ def parse_csv():
         reader = csv.DictReader(f)
         res = []
         for row in reader:
-            row["Birthdate"] = datetime.datetime.strptime(row["Birthdate"], "%m/%d/%Y").date()
+            row["Birthdate"] = datetime.datetime.strptime(
+                row["Birthdate"], "%m/%d/%Y"
+            ).date()
             row["Marks"] = [*map(int, row["Marks"].split(","))]
             res.append(row)
     return res
