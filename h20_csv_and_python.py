@@ -15,14 +15,14 @@ def generate_csv(a_list):
         writer.writerow(h[0] for h in a_list[0])
         for row in a_list:
             line = []
-            for col in row:
-                match col[0]:
+            for var, val in row:
+                match var:
                     case "date":
-                        line.append(col[1].strftime("%m/%d/%Y"))
+                        line.append(val.strftime("%m/%d/%Y"))
                     case "locations":
-                        line.append(",".join(col[1]))
+                        line.append(",".join(val))
                     case _:
-                        line.append(col[1])
+                        line.append(val)
             writer.writerow(line)
 
 
