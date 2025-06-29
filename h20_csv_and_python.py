@@ -42,8 +42,6 @@ def parse_csv():
 
 
 if __name__ == "__main__":
-    # import datetime
-
     # from <your_solution> import generate_csv
     meteo = [
         (
