@@ -7,6 +7,7 @@ import datetime
 
 
 def format_value(v):
+    """Format values according their type"""
     if isinstance(v, (tuple, list)):
         return ",".join(map(str, v))
     if isinstance(v, datetime.date):
@@ -15,6 +16,7 @@ def format_value(v):
 
 
 def generate_csv(rows):
+    """Create a csv file called results.csv from a list of tuples"""
     fields = [f for f, _ in rows[0]]
     with open("results.csv", "w", encoding="UTF-8", newline="") as f:
         writer = csv.DictWriter(f, fields)
@@ -25,6 +27,8 @@ def generate_csv(rows):
 
 
 def parse_csv():
+    """Read and parse a csv file called students.csv and return a list of dictionaries
+    which will contain the column name as key and the value as value"""
     rows = []
     with open("students.csv", "r", encoding="UTF-8") as f:
         for row in csv.DictReader(f):
