@@ -8,26 +8,30 @@ import datetime
 
 def format_value(v):
     if isinstance(v, (tuple, list)):
-        return ','.join(map(str, v))
+        return ",".join(map(str, v))
     if isinstance(v, datetime.date):
-        return v.strftime('%m/%d/%Y')
+        return v.strftime("%m/%d/%Y")
     return v
+
 
 def generate_csv(rows):
     fields = [f for f, _ in rows[0]]
-    with open('results.csv', 'w') as f:
+    with open("results.csv", "w") as f:
         writer = csv.DictWriter(f, fields)
         writer.writeheader()
         for row in rows:
             row = {k: format_value(v) for k, v in row}
             writer.writerow(row)
-        
+
+
 def parse_csv():
     rows = []
-    with open('students.csv') as f:
+    with open("students.csv") as f:
         for row in csv.DictReader(f):
-            row['Birthdate'] = datetime.datetime.strptime(row['Birthdate'], '%m/%d/%Y').date()
-            row['Marks'] = [int(x) for x in row['Marks'].split(',')]
+            row["Birthdate"] = datetime.datetime.strptime(
+                row["Birthdate"], "%m/%d/%Y"
+            ).date()
+            row["Marks"] = [int(x) for x in row["Marks"].split(",")]
             rows.append(row)
     return rows
 
@@ -91,4 +95,3 @@ if __name__ == "__main__":
     ]
 
     assert parse_csv() == students
-    
