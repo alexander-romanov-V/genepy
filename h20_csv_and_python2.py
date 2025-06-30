@@ -16,7 +16,7 @@ def format_value(v):
 
 def generate_csv(rows):
     fields = [f for f, _ in rows[0]]
-    with open("results.csv", "w") as f:
+    with open("results.csv", "w", encoding="UTF-8", newline="") as f:
         writer = csv.DictWriter(f, fields)
         writer.writeheader()
         for row in rows:
@@ -26,7 +26,7 @@ def generate_csv(rows):
 
 def parse_csv():
     rows = []
-    with open("students.csv") as f:
+    with open("students.csv", "r", encoding="UTF-8") as f:
         for row in csv.DictReader(f):
             row["Birthdate"] = datetime.datetime.strptime(
                 row["Birthdate"], "%m/%d/%Y"
