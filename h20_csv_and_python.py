@@ -58,6 +58,7 @@ if __name__ == "__main__":
         ),
     ]
     # m2 = [dict(m) for m in meteo]
+    
     generate_csv(meteo)
 
     # from <your_solution> import parse_csv
