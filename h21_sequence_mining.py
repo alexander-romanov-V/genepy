@@ -19,9 +19,9 @@ def seq_mining(data: list[str], min_p: float, max_l: int) -> Counter[str]:
     res = Counter()
     for d in data:
         c = Counter()
-        for l in range(min(max_l, len(d))):
-            for i in range(len(d) - l):
-                c[d[i : i + l + 1]] = 1
+        for seq_l in range(min(max_l, len(d))):
+            for i in range(len(d) - seq_l):
+                c[d[i : i + seq_l + 1]] = 1
         res += c
 
     for r in res:
@@ -33,29 +33,9 @@ def seq_mining(data: list[str], min_p: float, max_l: int) -> Counter[str]:
 
 if __name__ == "__main__":
     data = ["ABCD", "ABABC", "BCAABCD"]
-    result1 = {
-        "A": 3,
-        "AB": 3,
-        "ABC": 3,
-        "B": 3,
-        "BC": 3,
-        "BCD": 2,
-        "C": 3,
-        "CD": 2,
-        "D": 2,
-    }
-    result2 = {
-        "A": 3,
-        "AB": 3,
-        "ABC": 3,
-        "ABCD": 2,
-        "B": 3,
-        "BC": 3,
-        "BCD": 2,
-        "C": 3,
-        "CD": 2,
-        "D": 2,
-    }
+
+    result1 = {"A": 3, "AB": 3, "ABC": 3, "B": 3, "BC": 3, "BCD": 2, "C": 3, "CD": 2, "D": 2}
+    result2 = {"A": 3, "AB": 3, "ABC": 3, "ABCD": 2, "B": 3, "BC": 3, "BCD": 2, "C": 3, "CD": 2, "D": 2}
     result3 = {"A": 3, "AB": 3, "B": 3, "BC": 3, "C": 3, "CD": 2, "D": 2}
 
     assert seq_mining(data, 0.34, 3) == result1
