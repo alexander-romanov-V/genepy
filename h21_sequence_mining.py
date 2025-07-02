@@ -4,24 +4,24 @@ from collections import Counter
 
 
 # Solution 1 - my first
-def seq_mining(data: list[str,], min_p: float, max_l: int) -> Counter:
+def seq_mining(data: list[str], min_p: float, max_l: int) -> Counter[str]:
     """
     Find number of sequences according passed patterns
     Args:
-        l (list[str,]): list of strings (representing the sequences), such as:
+        l (list[str]): list of strings (representing the sequences), such as:
         min_p (float): The minimum proportion of the number of sequences that must
             have this pattern for being taken into account (float between 0 and 1)
         max_l (int): The maximum pattern length that must be considered (int)
     Returns:
-        Counter: a Counter, containing: The found patterns as keys and
+        Counter[str]: a Counter, containing: The found patterns as keys and
             The number of sequences containing this pattern as values
     """
     res = Counter()
-    for e in data:
+    for d in data:
         c = Counter()
-        for le in range(min(max_l, len(e))):
-            for i in range(len(e) - le):
-                c[e[i : i + le + 1]] = 1
+        for l in range(min(max_l, len(d))):
+            for i in range(len(d) - l):
+                c[d[i : i + l + 1]] = 1
         res += c
 
     for r in res:
