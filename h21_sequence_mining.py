@@ -50,6 +50,7 @@ def seq_mining2(data: list[str], min_p: float, max_l: int) -> Counter[str]:
     return Counter(c for c in res.elements() if res[c] >= len(data) * min_p)
 
 
+
 # Solution 3
 def seq_mining3(seqs: list, ratio: float, max_len: int):
     """Find number of sequences according passed patterns"""
