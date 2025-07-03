@@ -77,8 +77,11 @@ if __name__ == "__main__":
     ]:
         assert p(data, 0.34, 3) == result1
         print(f"{p.__name__:20} \033[92m[ PASS 1 ]\033[0m")
+
         assert p(data, 0.34, 4) == result2
         print(f"{p.__name__:20} \033[92m[ PASS 2 ]\033[0m")
+        
         assert p(data, 0.50, 2) == result3
         print(f"{p.__name__:20} \033[92m[ PASS 3 ]\033[0m")
+        
         print()
