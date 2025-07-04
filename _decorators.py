@@ -95,3 +95,40 @@ def my_func2(sleep_time: int):
 # print(my_func2(1))
 
 
+# ----------------------------------------------------------------------------
+def limit_calls(limit: int):
+    """4. Ограничение на частый вызов функции"""
+
+    def wrapper(func: Callable):
+        @wraps(func)
+        def inner_wrapper(*args, **kwargs):
+            nonlocal limit
+            if limit <= 0:
+                print(f"Нельзя вызвать функцию {func.__name__}")
+                return
+            res = func(*args, **kwargs)
+            limit -= 1
+            return res
+
+        return inner_wrapper
+
+    return wrapper
+
+
+@limit_calls(2)
+def my_func3(sleep_time: int):
+    """Поспать немного"""
+    time.sleep(sleep_time)
+    return 135
+
+
+# my_func3 = limit_calls(2)(my_func3)
+
+# print(my_func3(1))
+# print(my_func3(1))
+
+# print(my_func3(1))
+
+# print(my_func3.__name__)
+# print(my_func3.__doc__)
+
