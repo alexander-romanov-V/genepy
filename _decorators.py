@@ -18,3 +18,31 @@
 # my_func = deco(deco_params)(my_func)(func_params)
 
 
+# ----------------------------------------------------------------------------
+# Скелет декоратора
+from typing import Callable
+from functools import wraps
+
+
+def empty_deco(func: Callable):
+    @wraps(func)  # сохряняет докстринг, имя функции и пр.
+    def wrapper(*args, **kwargs):
+        res = func(*args, **kwargs)
+        return res
+    return wrapper
+
+
+# ----------------------------------------------------------------------------
+# Скелет декоратора с параметром
+def param_calls(param):
+    def wrapper(func: Callable):
+        @wraps(func)
+        def inner_wrapper(*args, **kwargs):
+            nonlocal param
+            res = func(*args, **kwargs)
+            return res
+        return inner_wrapper
+
+    return wrapper
+
+
