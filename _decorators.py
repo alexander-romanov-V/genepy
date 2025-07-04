@@ -67,3 +67,31 @@ def param_calls(param):
 # # asyncio.run()
 
 
+# ----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
+import time
+
+
+def timer_deco(func: Callable):
+    """1. Подсчет времени выполнения функции"""
+
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        res = func(*args, **kwargs)
+        end = time.time()
+        print(f"Исполнение {func.__name__} заняло {end-start:.3} сек.")
+        return res
+
+    return wrapper
+
+
+@timer_deco
+def my_func2(sleep_time: int):
+    time.sleep(sleep_time)
+    return 1350
+
+
+# print(my_func2(1))
+
+
