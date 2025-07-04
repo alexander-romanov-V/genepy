@@ -46,3 +46,24 @@ def param_calls(param):
     return wrapper
 
 
+# ----------------------------------------------------------------------------
+# # Скелет декоратора для асинхронной функции ( v.3.5 ?)
+# from typing import Coroutine
+# import asyncio
+
+# def async_deco(coroutine: Coroutine):
+#     async def wrapper(*args, **kwargs):
+#         res = await coroutine(*args, **kwargs)
+#         return res
+#     return wrapper
+
+
+# @async_deco
+# async def my_async_func():
+#     await asyncio.sleep(0.5)
+#     return 1
+
+# await my_async_func()
+# # asyncio.run()
+
+
