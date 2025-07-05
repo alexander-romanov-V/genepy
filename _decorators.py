@@ -132,3 +132,15 @@ def my_func3(sleep_time: int):
 # print(my_func3.__name__)
 # print(my_func3.__doc__)
 
+# ----------------------------------------------------------------------------
+# Кэширование вызовов
+from functools import lru_cache
+@lru_cache(maxsize=5)
+def my_long_calc():
+    time.sleep(3)
+    return 42
+
+# print(my_long_calc())
+# print(my_long_calc())
+# print(my_long_calc())
+
