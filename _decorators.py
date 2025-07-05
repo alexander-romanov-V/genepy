@@ -158,3 +158,27 @@ def ctx_manager():
 #     print("123")
 
 
+# ----------------------------------------------------------------------------
+# 2. Логирование вызовов и параметров функции
+from typing import Callable
+from functools import wraps
+
+def log_func(func: Callable):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        print(f"func {func.__name__} args {args} kwargs {kwargs}")
+        res = func(*args, **kwargs)
+        return res
+    return wrapper
+
+@log_func
+def my_test_func(a: int, b: float, c="test"):
+    return f"{a}, {b}, {c}"
+
+my_test_func(1, 2, "one")
+my_test_func(11, 12, c="tho")
+my_test_func(5, 8, c="three")
+
+
+# print(len(*filter(str.isupper,open("file2.txt").read())))
+
