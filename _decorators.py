@@ -144,3 +144,17 @@ def my_long_calc():
 # print(my_long_calc())
 # print(my_long_calc())
 
+# ----------------------------------------------------------------------------
+# Контекстный менеджер синхронный (with)
+from contextlib import contextmanager
+
+@contextmanager
+def ctx_manager():
+    print("Hello")
+    yield
+    print("end")
+
+# with ctx_manager() as man:
+#     print("123")
+
+
