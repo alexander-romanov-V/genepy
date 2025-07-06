@@ -47,7 +47,7 @@ def seq_mining2(data: list[str], min_p: float, max_l: int) -> Counter[str]:
         ],
         Counter(),
     )
-    
+
     return Counter(c for c in res.elements() if res[c] >= len(data) * min_p)
 
 
@@ -78,6 +78,7 @@ if __name__ == "__main__":
         "CD": 2,
         "D": 2,
     }
+    
     result2 = {
         "A": 3,
         "AB": 3,
@@ -90,6 +91,7 @@ if __name__ == "__main__":
         "CD": 2,
         "D": 2,
     }
+
     result3 = {"A": 3, "AB": 3, "B": 3, "BC": 3, "C": 3, "CD": 2, "D": 2}
 
     for p in [
