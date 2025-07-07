@@ -29,6 +29,7 @@ def apply_gravity2(grid):
         grid[:, :-1][tops[:, 1:]] += 1
 
 
+
 import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
