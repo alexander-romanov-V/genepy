@@ -4,8 +4,6 @@ import numpy as np
 
 
 # Solution 1 - my first
-
-
 def apply_gravity(sandpile):
     """ "apply gravity" on it (and returns nothing):
     * Each element of the array is an integer representing the height of the sandpile
@@ -16,10 +14,19 @@ def apply_gravity(sandpile):
         for x, y in list(zip(*np.where(sandpile >= 4))):
             sandpile[x, y] -= 4
             for xx, yy in ((x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)):
-                try:
-                    sandpile[xx, yy] += 1
-                except:
-                    ...
+                sandpile[xx, yy] += 1
+
+
+# Solution 2
+def apply_gravity2(grid):
+    """apply gravity"""
+    while np.max(grid) > 3:
+        tops = grid > 3
+        grid[tops] -= 4
+        grid[1:, :][tops[:-1, :]] += 1
+        grid[:-1, :][tops[1:, :]] += 1
+        grid[:, 1:][tops[:, :-1]] += 1
+        grid[:, :-1][tops[:, 1:]] += 1
 
 
 import matplotlib.pyplot as plt
