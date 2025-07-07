@@ -13,15 +13,19 @@ def apply_gravity(sandpile):
       particles being subtracted from the pile and distributed among its neighbors.
     """
     while np.any(sandpile >= 4):
-        for x, y in list(zip(*np.where(sandpile > 4))):
+        for x, y in list(zip(*np.where(sandpile >= 4))):
             sandpile[x, y] -= 4
-            for xx, yy in [
-                (xx, yy)
-                for xx in range(max(x - 1, 0), min(x + 2, sandpile.shape[0]))
-                for yy in range(max(y - 1, 0), min(y + 2, sandpile.shape[1]))
-            ]:
-                if (x!=xx and y!=yy):
-                    sandpile[xx, yy] += 1
+            idx = []
+            if x > 0:
+                idx.append((x - 1, y))
+            if x < sandpile.shape[0] - 1:
+                idx.append((x + 1, y))
+            if y > 0:
+                idx.append((x, y - 1))
+            if y < sandpile.shape[1] - 1:
+                idx.append((x, y + 1))
+            for xx, yy in idx:
+                sandpile[xx, yy] += 1
 
 
 import matplotlib.pyplot as plt
