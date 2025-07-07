@@ -15,17 +15,11 @@ def apply_gravity(sandpile):
     while np.any(sandpile >= 4):
         for x, y in list(zip(*np.where(sandpile >= 4))):
             sandpile[x, y] -= 4
-            idx = []
-            if x > 0:
-                idx.append((x - 1, y))
-            if x < sandpile.shape[0] - 1:
-                idx.append((x + 1, y))
-            if y > 0:
-                idx.append((x, y - 1))
-            if y < sandpile.shape[1] - 1:
-                idx.append((x, y + 1))
-            for xx, yy in idx:
-                sandpile[xx, yy] += 1
+            for xx, yy in ((x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)):
+                try:
+                    sandpile[xx, yy] += 1
+                except:
+                    ...
 
 
 import matplotlib.pyplot as plt
