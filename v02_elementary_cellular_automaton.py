@@ -38,3 +38,26 @@ def solution1():
         line, line_2 = line_2, line
 
 
+# Solution 2 - my second
+def solution2():
+    try:
+        n = int(argv[1])
+        if n < 0 or n > 255:
+            raise ValueError
+    except (ValueError, IndexError):
+        print(f"usage: {argv[0]} N\n\tN - rule number = 0..255")
+        exit()
+    # n = 90
+    line = [0] * 39 + [1] + [0] * 39
+
+    rule = dict()
+    for i in range(8):
+        rule[i // 4 % 2, i // 2 % 2, i % 2] = n % 2
+        n //= 2
+
+    for _ in range(40):
+        print("".join(("#" if c else ".") for c in line))
+        line = [line[-1]] + line + [line[0]]
+        line = [rule[tuple(line[i - 1 : i + 2])] for i in range(1, 80)]
+
+
