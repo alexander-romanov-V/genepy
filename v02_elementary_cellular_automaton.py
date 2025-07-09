@@ -19,7 +19,7 @@ def solution1():
     except (ValueError, IndexError):
         print(f"usage: {argv[0]} N\n\tN - rule number = 0..255")
         exit()
-    # n = 30
+
     w = 79
     line, line_2 = [0] * w, [0] * w
     line[w // 2] = 1
@@ -49,7 +49,7 @@ def solution2():
     except (ValueError, IndexError):
         print(f"usage: {argv[0]} N\n\tN - rule number = 0..255")
         exit()
-    # n = 90
+
     line = [0] * 39 + [1] + [0] * 39
 
     rule = dict()
@@ -68,7 +68,6 @@ def solution3():
     """Elementary cellular automaton"""
     try:
         rules_number = int(argv[1])
-        # rules_number = 90
     except (ValueError, IndexError):
         print(f"Wrong parameter, usage : {argv[0]} NUMBER")
         exit(1)
