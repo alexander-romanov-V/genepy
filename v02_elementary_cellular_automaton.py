@@ -7,10 +7,11 @@ from sys import argv
 def solution1():
     """Build a program taking an integer as single parameter, .
     This integer is a rule number in the Wolfram code.
-    Your program will display a 79×40 table filled with # for ones (1s) and . for zeroes (0s), as a result 
+    Your program will display a 79×40 table filled with # for ones (1s) and . for zeroes (0s), as a result
     of running an elementary automata for the given rule number (the int parameter).
     The first line will always be filled with zeroes except for a single cell with a 1 right in the middle.
-    The "board" is a cylinder: on the left of the leftmost column is the rightmost column, and vice-versa."""
+    The "board" is a cylinder: on the left of the leftmost column is the rightmost column, and vice-versa.
+    """
     try:
         n = int(argv[1])
         if n < 0 or n > 255:
@@ -40,6 +41,7 @@ def solution1():
 
 # Solution 2 - my second
 def solution2():
+    """Elementary cellular automaton"""
     try:
         n = int(argv[1])
         if n < 0 or n > 255:
@@ -63,6 +65,7 @@ def solution2():
 
 # Solution 3
 def solution3():
+    """Elementary cellular automaton"""
     try:
         rules_number = int(argv[1])
         # rules_number = 90
@@ -88,6 +91,7 @@ def solution3():
 
 # Solution 4 - my best
 def solution4():
+    """Elementary cellular automaton"""
     try:
         n = int(argv[1])
     except (ValueError, IndexError):
@@ -107,4 +111,3 @@ if __name__ == "__main__":
     solution2()
     solution3()
     solution4()
-
