@@ -103,11 +103,11 @@ def solution4():
 
     for _ in range(40):
         print("".join(".#"[c] for c in line))
-        line = [rule[4 * line[i - 1] + 2 * line[i] + line[(i + 1) % 79]] for i in range(79)]
+        line = [
+            rule[4 * line[i - 1] + 2 * line[i] + line[(i + 1) % 79]] for i in range(79)
+        ]
 
 
 if __name__ == "__main__":
-    solution1()
-    solution2()
-    solution3()
-    solution4()
+    for p in [solution1, solution2, solution3, solution4]:
+        p()
