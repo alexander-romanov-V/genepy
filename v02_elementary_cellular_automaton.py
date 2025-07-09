@@ -61,3 +61,28 @@ def solution2():
         line = [rule[tuple(line[i - 1 : i + 2])] for i in range(1, 80)]
 
 
+# Solution 3
+def solution3():
+    try:
+        rules_number = int(argv[1])
+        # rules_number = 90
+    except (ValueError, IndexError):
+        print(f"Wrong parameter, usage : {argv[0]} NUMBER")
+        exit(1)
+
+    WIDTH = 79
+    HEIGH = 40
+
+    rules = [int(f"{rules_number:08b}"[7 - i]) for i in range(8)]
+
+    cells = [0] * WIDTH
+    cells[WIDTH // 2] = 1
+
+    for _ in range(HEIGH):
+        print("".join(".#"[c] for c in cells))
+        cells = [
+            rules[4 * cells[i - 1] + 2 * cells[i] + cells[(i + 1) % WIDTH]]
+            for i in range(WIDTH)
+        ]
+
+
