@@ -86,3 +86,25 @@ def solution3():
         ]
 
 
+# Solution 4 - my best
+def solution4():
+    try:
+        n = int(argv[1])
+    except (ValueError, IndexError):
+        print(f"usage: {argv[0]} N\n\tN - rule number = 0..255")
+        exit(1)
+
+    line = [0] * 39 + [1] + [0] * 39
+    rule = [int(f"{n:08b}"[7 - i]) for i in range(8)]
+
+    for _ in range(40):
+        print("".join(".#"[c] for c in line))
+        line = [rule[4 * line[i - 1] + 2 * line[i] + line[(i + 1) % 79]] for i in range(79)]
+
+
+if __name__ == "__main__":
+    solution1()
+    solution2()
+    solution3()
+    solution4()
+
