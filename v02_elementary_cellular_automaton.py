@@ -22,6 +22,7 @@ def solution1():
         exit()
 
     w = 79
+    
     line, line_2 = [0] * w, [0] * w
     line[w // 2] = 1
 
