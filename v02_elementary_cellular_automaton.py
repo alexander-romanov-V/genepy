@@ -69,6 +69,7 @@ def solution2():
 # Solution 3
 def solution3():
     """Elementary cellular automaton"""
+    
     try:
         rules_number = int(argv[1])
     except (ValueError, IndexError):
