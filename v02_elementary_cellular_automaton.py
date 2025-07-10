@@ -22,7 +22,7 @@ def solution1():
         exit()
 
     w = 79
-    
+
     line, line_2 = [0] * w, [0] * w
     line[w // 2] = 1
 
@@ -44,6 +44,7 @@ def solution1():
 # Solution 2 - my second
 def solution2():
     """Elementary cellular automaton"""
+    
     try:
         n = int(argv[1])
         if n < 0 or n > 255:
