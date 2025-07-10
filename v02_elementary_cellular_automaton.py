@@ -12,6 +12,7 @@ def solution1():
     The first line will always be filled with zeroes except for a single cell with a 1 right in the middle.
     The "board" is a cylinder: on the left of the leftmost column is the rightmost column, and vice-versa.
     """
+    
     try:
         n = int(argv[1])
         if n < 0 or n > 255:
