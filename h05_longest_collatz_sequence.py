@@ -17,6 +17,7 @@ def collatz_length2(n):
     return 1 + collatz_length2(n * 3 + 1 if n % 2 else n // 2) if n > 1 else 0
 
 
+
 if __name__ == "__main__":
     assert collatz_length(10) == 6
     assert collatz_length2(10) == 6
