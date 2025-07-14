@@ -108,6 +108,7 @@ def solution3():
     segments = (s for y, x in cases for s in get_segments(x, y))
     segments = ([e[y][x] for x, y in s] for s in segments)
     muls = (functools.reduce(operator.mul, s) for s in segments)
+
     return max(muls)
 
 
