@@ -71,12 +71,9 @@ def pwgen2(length, with_digits=True, with_uppercase=True):
 
 
 if __name__ == "__main__":
-    print(pwgen(6, False, False))
-    print(pwgen(6, False, True))
-    print(pwgen(6, True, False))
-    print(pwgen(6, True, True))
-
-    print(pwgen2(6, False, False))
-    print(pwgen2(6, False, True))
-    print(pwgen2(6, True, False))
-    print(pwgen2(6, True, True))
+    for p in [pwgen,pwgen2]:
+        print(p(6, False, False))
+        print(p(6, False, True))
+        print(p(6, True, False))
+        print(p(6, True, True))
+        print()
