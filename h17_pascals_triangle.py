@@ -43,5 +43,7 @@ def print_pascal_triangle2(height):
 
 
 if __name__ == "__main__":
-    for i in range(1, 11):
-        print_pascal_triangle2(i)
+    for p in (print_pascal_triangle, print_pascal_triangle2):
+        for i in range(1, 11):
+            print(f"\n{p.__name__}({i})")
+            p(i)
