@@ -46,3 +46,28 @@ def bencode(obj: str | int | list[int|str] | dict[int|str, int|str]) -> bytearra
     return bytearray(res, encoding="utf-8")
 
 
+def bdecode(b: bytearray):
+    """take bytes as a parameter and returns an object
+    objects may be of type: str (UTF-8), int, list, dict"""
+
+    return b
+
+
+if __name__ == "__main__":
+
+    # int
+    assert bencode(0) == b"i0e"
+    assert bencode(42) == b"i42e"
+    assert bencode(-42) == b"i-42e"
+    # str
+    assert bencode("") == b"0:"
+    assert bencode("bencode") == b"7:bencode"
+    # list
+    assert bencode([]) == b"le"
+    assert bencode(["bencode", -20]) == b"l7:bencodei-20ee"
+    # dict
+    assert bencode({}) == b"de"
+    assert bencode({"wiki": "bencode", "meaning": 42}) == b"d7:meaningi42e4:wiki7:bencodee"
+    # all passed
+    print(f"{bencode.__name__:20} \033[92m[ PASS ]\033[0m")
+
