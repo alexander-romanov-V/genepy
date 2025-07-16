@@ -68,6 +68,7 @@ if __name__ == "__main__":
     # dict
     assert bencode({}) == b"de"
     assert bencode({"wiki": "bencode", "meaning": 42}) == b"d7:meaningi42e4:wiki7:bencodee"
+    
     # all passed
     print(f"{bencode.__name__:20} \033[92m[ PASS ]\033[0m")
 
