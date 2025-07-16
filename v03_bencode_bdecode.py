@@ -27,8 +27,22 @@ and use them but only for you to use.
 # Solution 1 - my first
 
 
-def bencode(obj: str | int) -> str:
+def bencode_helper(obj: str | int) -> str:
     """bencode helper for str and int"""
     if isinstance(obj, str):
         return f"{len(obj)}:{obj}"
     return f"i{obj}e"
+
+
+def bencode(obj: str | int | list[int|str] | dict[int|str, int|str]) -> bytearray:
+    """take one object as a parameter and returns bytes
+    objects may be of type: str (UTF-8), int, list, dict"""
+    if isinstance(obj, list):
+        res = f"l{''.join(bencode_helper(b) for b in obj)}e"
+    elif isinstance(obj, dict):
+        res = f"d{''.join(bencode_helper(k) + bencode_helper(v) for k, v in sorted(obj.items()))}e"
+    else:
+        res = bencode_helper(obj)
+    return bytearray(res, encoding="utf-8")
+
+
