@@ -128,3 +128,18 @@ if __name__ == "__main__":
     }
     # DECODE all passed
     print(f"{bdecode.__name__:24} \033[92m[ PASS ]\033[0m")
+
+    print("\nTest function with incorrect parameters:")
+    for data in [
+        "",
+         "ie", "i0e1",  # "i+5e", "i-5e",
+        "1:", "3:test",  # "4:test",
+        "l e", "lie", "liee", "lie0:e",  # "le", "l0:e", "li1e4:teste",
+        "d e", "die", "diee", "die0:e", "d0:e",  # "de", "d7:meaningi42e4:wiki7:bencodee",
+    ]:
+        try:
+            r = bdecode(bytearray(data, "utf-8"))
+        except ValueError:
+            print(f"{'\'' + data + '\'':>10} -> {'exception':10} \033[92m[ PASS ]\033[0m")
+        else:
+            print(f"{'\''+ data + '\'':>10} -> {r.__str__():10} \033[91m[ FAIL ]\033[0m")
