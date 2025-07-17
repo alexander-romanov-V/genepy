@@ -24,6 +24,7 @@ and use them but only for you to use.
 
 """
 
+
 # Solution 1 - my first
 
 
@@ -34,7 +35,7 @@ def bencode_helper(obj: str | int) -> str:
     return f"i{obj}e"
 
 
-def bencode(obj: str | int | list[int|str] | dict[int|str, int|str]) -> bytearray:
+def bencode(obj: str | int | list[int | str] | dict[int | str, int | str]) -> bytearray:
     """take one object as a parameter and returns bytes
     objects may be of type: str (UTF-8), int, list, dict"""
     if isinstance(obj, list):
@@ -46,29 +47,16 @@ def bencode(obj: str | int | list[int|str] | dict[int|str, int|str]) -> bytearra
     return bytearray(res, encoding="utf-8")
 
 
-def bdecode(b: bytearray):
-    """take bytes as a parameter and returns an object
-    objects may be of type: str (UTF-8), int, list, dict"""
-
-    return b
-
-
-if __name__ == "__main__":
-
-    # int
-    assert bencode(0) == b"i0e"
-    assert bencode(42) == b"i42e"
-    assert bencode(-42) == b"i-42e"
-    # str
-    assert bencode("") == b"0:"
-    assert bencode("bencode") == b"7:bencode"
-    # list
-    assert bencode([]) == b"le"
-    assert bencode(["bencode", -20]) == b"l7:bencodei-20ee"
-    # dict
-    assert bencode({}) == b"de"
-    assert bencode({"wiki": "bencode", "meaning": 42}) == b"d7:meaningi42e4:wiki7:bencodee"
-    
-    # all passed
-    print(f"{bencode.__name__:20} \033[92m[ PASS ]\033[0m")
-
+def bdecode_helper(s: str, inner=False) -> tuple[str | int, str]:
+    """bdecode helper for str and int"""
+    if s:
+        if s[0] == "i" and (n := s.find("e")):
+            res = int(s[1:n])
+            if not (s := s[n + 1 :]) or inner:
+                return res, s
+        elif n := s.find(":"):
+            l = int(s[:n])
+            res = s[n + 1 : n + l + 1]
+            if len(res) == l and (not (s := s[n + l + 1 :]) or inner):
+                return res, s
+    raise ValueError
