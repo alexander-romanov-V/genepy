@@ -24,66 +24,68 @@ and use them but only for you to use.
 
 """
 
-
 # Solution 1 - my first
 
 
-def bencode_helper(obj: str | int) -> str:
-    """bencode helper for str and int"""
-    if isinstance(obj, str):
-        return f"{len(obj)}:{obj}"
-    return f"i{obj}e"
-
-
-def bencode(obj: str | int | list[int | str] | dict[int | str, int | str]) -> bytearray:
+def bencode(obj: str | int | list | dict) -> bytes:
     """take one object as a parameter and returns bytes
     objects may be of type: str (UTF-8), int, list, dict"""
-    if isinstance(obj, list):
-        res = f"l{''.join(bencode_helper(b) for b in obj)}e"
-    elif isinstance(obj, dict):
-        res = f"d{''.join(bencode_helper(k) + bencode_helper(v) for k, v in sorted(obj.items()))}e"
-    else:
-        res = bencode_helper(obj)
-    return bytearray(res, encoding="utf-8")
+
+    def bencode_helper(obj: str | int | list | dict) -> str:
+        """bencode helper"""
+        if isinstance(obj, str):
+            return f"{len(obj)}:{obj}"
+        if isinstance(obj, int):
+            return f"i{obj}e"
+        if isinstance(obj, list):
+            return f"l{''.join(bencode_helper(b) for b in obj)}e"
+        if isinstance(obj, dict):
+            return f"d{''.join(bencode_helper(k) + bencode_helper(v) for k, v in sorted(obj.items()))}e"
+        raise ValueError
+
+    return bencode_helper(obj).encode(encoding="utf-8")
 
 
-def bdecode_helper(s: str, inner=False) -> tuple[str | int, str]:
-    """bdecode helper for str and int"""
-    if s:
-        if s[0] == "i" and (n := s.find("e")):
-            res = int(s[1:n])
-            if not (s := s[n + 1 :]) or inner:
-                return res, s
-        elif n := s.find(":"):
-            l = int(s[:n])
-            res = s[n + 1 : n + l + 1]
-            if len(res) == l and (not (s := s[n + l + 1 :]) or inner):
-                return res, s
-    raise ValueError
-
-
-def bdecode(b: bytearray) -> str | int | list[int | str] | dict[int | str, int | str]:
+def bdecode(b: bytes) -> str | int | list | dict:
     """take bytes as a parameter and returns an object
     objects may be of type: str (UTF-8), int, list, dict"""
-    if not (s := b.decode(encoding="utf-8")):
+
+    s = b.decode(encoding="utf-8")
+
+    def bdecode_helper(inner=False) -> str | int | list | dict:
+        """bdecode helper"""
+        nonlocal s
+        if (l := len(s)) > 1:
+            if s[0].isdecimal():
+                n = s.find(":")
+                l = int(s[:n])
+                res = s[n + 1 : n + l + 1]
+                s = s[n + l + 1 :]
+                if len(res) == l and (not s or inner):
+                    return res
+            elif s[0] == "i" and (n := s.find("e")):
+                res = int(s[1:n])
+                s = s[n + 1 :]
+                if not s or inner:
+                    return res
+            elif s[0] == "l":
+                s = s[1:]
+                res = list()
+                while s[0] != "e":
+                    res.append(bdecode_helper(inner=True))
+                s = s[1:]
+                return res
+            elif s[0] == "d":
+                s = s[1:]
+                res = dict()
+                while s[0] != "e":
+                    k = bdecode_helper(inner=True)
+                    res[k] = bdecode_helper(inner=True)
+                s = s[1:]
+                return res
         raise ValueError
-    if s[0] == "l" and s[-1] == "e":
-        s = s[1:-1]
-        res = []
-        while s:
-            e, s = bdecode_helper(s, inner=True)
-            res.append(e)
-        return res
-    elif s[0] == "d" and s[-1] == "e":
-        s = s[1:-1]
-        res = dict()
-        while s:
-            k, s = bdecode_helper(s, inner=True)
-            v, s = bdecode_helper(s, inner=True)
-            res[k] = v
-        return res
-    else:
-        return bdecode_helper(s)[0]
+
+    return bdecode_helper()
 
 
 if __name__ == "__main__":
@@ -103,42 +105,51 @@ if __name__ == "__main__":
     assert bencode(["bencode", -20]) == b"l7:bencodei-20ee"
     # dict
     assert bencode({}) == b"de"
-    assert (
-        bencode({"wiki": "bencode", "meaning": 42}) == b"d7:meaningi42e4:wiki7:bencodee"
-    )
+    assert bencode({"wiki": "bencode", "meaning": 42}) == b"d7:meaningi42e4:wiki7:bencodee"
+    # inner
+    assert bencode({"outter": {"inner": "hello"}}) == b"d6:outterd5:inner5:helloee"
     # ENCODE all passed
     print(f"{bencode.__name__:24} \033[92m[ PASS ]\033[0m")
 
     # DECODE
     # int
-    assert bdecode(bytearray("i0e", "utf-8")) == 0
-    assert bdecode(bytearray("i42e", "utf-8")) == 42
-    assert bdecode(bytearray("i-42e", "utf-8")) == -42
+    assert bdecode(b"i0e") == 0
+    assert bdecode(b"i42e") == 42
+    assert bdecode(b"i-42e") == -42
     # str
-    assert bdecode(bytearray("0:", "utf-8")) == ""
-    assert bdecode(bytearray("7:bencode", "utf-8")) == "bencode"
+    assert bdecode(b"0:") == ""
+    assert bdecode(b"7:bencode") == "bencode"
     # list
-    assert bdecode(bytearray("le", "utf-8")) == []
-    assert bdecode(bytearray("l7:bencodei-20ee", "utf-8")) == ["bencode", -20]
+    assert bdecode(b"le") == []
+    assert bdecode(b"l7:bencodei-20ee") == ["bencode", -20]
     # dict
-    assert bdecode(bytearray("de", "utf-8")) == {}
-    assert bdecode(bytearray("d7:meaningi42e4:wiki7:bencodee", "utf-8")) == {
-        "wiki": "bencode",
-        "meaning": 42,
-    }
+    assert bdecode(b"de") == {}
+    assert bdecode(b"d7:meaningi42e4:wiki7:bencodee") == {"wiki": "bencode", "meaning": 42}
+    # inner
+    assert bdecode(b"d6:outterd5:inner5:helloee") == {"outter": {"inner": "hello"}}
+    assert bdecode(b"d7:outter1d5:inner5:helloe7:outter25:worlde") == {"outter1": {"inner": "hello"}, "outter2": "world"}
     # DECODE all passed
     print(f"{bdecode.__name__:24} \033[92m[ PASS ]\033[0m")
 
     print("\nTest function with incorrect parameters:")
     for data in [
         "",
-         "ie", "i0e1",  # "i+5e", "i-5e",
-        "1:", "3:test",  # "4:test",
-        "l e", "lie", "liee", "lie0:e",  # "le", "l0:e", "li1e4:teste",
-        "d e", "die", "diee", "die0:e", "d0:e",  # "de", "d7:meaningi42e4:wiki7:bencodee",
+        "ie",
+        "i0e1",  # "i+5e", "i-5e",
+        "1:",
+        "3:test",  # "4:test",
+        "l e",
+        "lie",
+        "liee",
+        "lie0:e",  # "le", "l0:e", "li1e4:teste",
+        "d e",
+        "die",
+        "diee",
+        "die0:e",
+        "d0:e",  # "de", "d7:meaningi42e4:wiki7:bencodee",
     ]:
         try:
-            r = bdecode(bytearray(data, "utf-8"))
+            r = bdecode(data.encode("utf-8"))
         except ValueError:
             print(f"{'\'' + data + '\'':>10} -> {'exception':10} \033[92m[ PASS ]\033[0m")
         else:
