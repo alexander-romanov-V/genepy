@@ -84,3 +84,47 @@ def bdecode(b: bytearray) -> str | int | list[int | str] | dict[int | str, int |
         return res
     else:
         return bdecode_helper(s)[0]
+
+
+if __name__ == "__main__":
+
+    print("\nTest function with correct parameters:")
+
+    # ENCODE
+    # int
+    assert bencode(0) == b"i0e"
+    assert bencode(42) == b"i42e"
+    assert bencode(-42) == b"i-42e"
+    # str
+    assert bencode("") == b"0:"
+    assert bencode("bencode") == b"7:bencode"
+    # list
+    assert bencode([]) == b"le"
+    assert bencode(["bencode", -20]) == b"l7:bencodei-20ee"
+    # dict
+    assert bencode({}) == b"de"
+    assert (
+        bencode({"wiki": "bencode", "meaning": 42}) == b"d7:meaningi42e4:wiki7:bencodee"
+    )
+    # ENCODE all passed
+    print(f"{bencode.__name__:24} \033[92m[ PASS ]\033[0m")
+
+    # DECODE
+    # int
+    assert bdecode(bytearray("i0e", "utf-8")) == 0
+    assert bdecode(bytearray("i42e", "utf-8")) == 42
+    assert bdecode(bytearray("i-42e", "utf-8")) == -42
+    # str
+    assert bdecode(bytearray("0:", "utf-8")) == ""
+    assert bdecode(bytearray("7:bencode", "utf-8")) == "bencode"
+    # list
+    assert bdecode(bytearray("le", "utf-8")) == []
+    assert bdecode(bytearray("l7:bencodei-20ee", "utf-8")) == ["bencode", -20]
+    # dict
+    assert bdecode(bytearray("de", "utf-8")) == {}
+    assert bdecode(bytearray("d7:meaningi42e4:wiki7:bencodee", "utf-8")) == {
+        "wiki": "bencode",
+        "meaning": 42,
+    }
+    # DECODE all passed
+    print(f"{bdecode.__name__:24} \033[92m[ PASS ]\033[0m")
