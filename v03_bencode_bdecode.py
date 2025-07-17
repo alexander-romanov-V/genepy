@@ -60,3 +60,27 @@ def bdecode_helper(s: str, inner=False) -> tuple[str | int, str]:
             if len(res) == l and (not (s := s[n + l + 1 :]) or inner):
                 return res, s
     raise ValueError
+
+
+def bdecode(b: bytearray) -> str | int | list[int | str] | dict[int | str, int | str]:
+    """take bytes as a parameter and returns an object
+    objects may be of type: str (UTF-8), int, list, dict"""
+    if not (s := b.decode(encoding="utf-8")):
+        raise ValueError
+    if s[0] == "l" and s[-1] == "e":
+        s = s[1:-1]
+        res = []
+        while s:
+            e, s = bdecode_helper(s, inner=True)
+            res.append(e)
+        return res
+    elif s[0] == "d" and s[-1] == "e":
+        s = s[1:-1]
+        res = dict()
+        while s:
+            k, s = bdecode_helper(s, inner=True)
+            v, s = bdecode_helper(s, inner=True)
+            res[k] = v
+        return res
+    else:
+        return bdecode_helper(s)[0]
