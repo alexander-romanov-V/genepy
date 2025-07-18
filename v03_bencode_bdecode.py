@@ -57,32 +57,23 @@ def bdecode(b: bytes) -> str | int | list | dict:
         nonlocal s
         if (l := len(s)) > 1:
             if s[0].isdecimal():
-                n = s.find(":")
-                l = int(s[:n])
-                res = s[n + 1 : n + l + 1]
-                s = s[n + l + 1 :]
+                l = int(s[: (n := s.find(":"))])
+                res, s = s[n + 1 : n + l + 1], s[n + l + 1 :]
                 if len(res) == l and (not s or inner):
                     return res
             elif s[0] == "i" and (n := s.find("e")):
-                res = int(s[1:n])
-                s = s[n + 1 :]
+                res, s = int(s[1:n]), s[n + 1 :]
                 if not s or inner:
                     return res
-            elif s[0] == "l":
-                s = s[1:]
-                res = list()
+            elif (c := s[0]) in "ld":
+                res, s = [], s[1:]
                 while s[0] != "e":
                     res.append(bdecode_helper(inner=True))
                 s = s[1:]
-                return res
-            elif s[0] == "d":
-                s = s[1:]
-                res = dict()
-                while s[0] != "e":
-                    k = bdecode_helper(inner=True)
-                    res[k] = bdecode_helper(inner=True)
-                s = s[1:]
-                return res
+                if c == "l":
+                    return res
+                if len(res) % 2 == 0:
+                    return dict(zip(res[::2], res[1::2]))
         raise ValueError
 
     return bdecode_helper()
