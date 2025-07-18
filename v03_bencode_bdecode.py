@@ -30,27 +30,25 @@ and use them but only for you to use.
 def bencode(obj: str | int | list | dict) -> bytes:
     """take one object as a parameter and returns bytes
     objects may be of type: str (UTF-8), int, list, dict"""
-    def _bencode(obj: str | int | list | dict) -> str:
+    def bencode_helper(obj: str | int | list | dict) -> str:
         """bencode helper"""
         if isinstance(obj, str):
             return f"{len(obj)}:{obj}"
         if isinstance(obj, int):
             return f"i{obj}e"
         if isinstance(obj, list):
-            return f"l{''.join(_bencode(b) for b in obj)}e"
+            return f"l{''.join(bencode_helper(b) for b in obj)}e"
         if isinstance(obj, dict):
-            return f"d{''.join(_bencode(k) + _bencode(v) for k, v in sorted(obj.items()))}e"
+            return f"d{''.join(bencode_helper(k) + bencode_helper(v) for k, v in sorted(obj.items()))}e"
         raise ValueError
-    return _bencode(obj).encode(encoding="utf-8")
+    return bencode_helper(obj).encode(encoding="utf-8")
 
 
 def bdecode(b: bytes) -> str | int | list | dict:
     """take bytes as a parameter and returns an object
     objects may be of type: str (UTF-8), int, list, dict"""
-
     s = b.decode(encoding="utf-8")
-
-    def _bdecode(inner=False) -> str | int | list | dict:
+    def bdecode_helper(inner=False) -> str | int | list | dict:
         """bdecode helper"""
         nonlocal s
         if (l := len(s)) > 1:
@@ -66,19 +64,17 @@ def bdecode(b: bytes) -> str | int | list | dict:
             elif (c := s[0]) in "ld":
                 res, s = [], s[1:]
                 while s[0] != "e":
-                    res.append(_bdecode(inner=True))
+                    res.append(bdecode_helper(inner=True))
                 s = s[1:]
                 if c == "l":
                     return res
                 if len(res) % 2 == 0:
                     return dict(zip(res[::2], res[1::2]))
         raise ValueError
-
-    return _bdecode()
+    return bdecode_helper()
 
 
 if __name__ == "__main__":
-
     print("\nTest function with correct parameters:")
 
     # ENCODE
