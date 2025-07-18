@@ -30,20 +30,18 @@ and use them but only for you to use.
 def bencode(obj: str | int | list | dict) -> bytes:
     """take one object as a parameter and returns bytes
     objects may be of type: str (UTF-8), int, list, dict"""
-
-    def bencode_helper(obj: str | int | list | dict) -> str:
+    def _bencode(obj: str | int | list | dict) -> str:
         """bencode helper"""
         if isinstance(obj, str):
             return f"{len(obj)}:{obj}"
         if isinstance(obj, int):
             return f"i{obj}e"
         if isinstance(obj, list):
-            return f"l{''.join(bencode_helper(b) for b in obj)}e"
+            return f"l{''.join(_bencode(b) for b in obj)}e"
         if isinstance(obj, dict):
-            return f"d{''.join(bencode_helper(k) + bencode_helper(v) for k, v in sorted(obj.items()))}e"
+            return f"d{''.join(_bencode(k) + _bencode(v) for k, v in sorted(obj.items()))}e"
         raise ValueError
-
-    return bencode_helper(obj).encode(encoding="utf-8")
+    return _bencode(obj).encode(encoding="utf-8")
 
 
 def bdecode(b: bytes) -> str | int | list | dict:
@@ -52,7 +50,7 @@ def bdecode(b: bytes) -> str | int | list | dict:
 
     s = b.decode(encoding="utf-8")
 
-    def bdecode_helper(inner=False) -> str | int | list | dict:
+    def _bdecode(inner=False) -> str | int | list | dict:
         """bdecode helper"""
         nonlocal s
         if (l := len(s)) > 1:
@@ -68,7 +66,7 @@ def bdecode(b: bytes) -> str | int | list | dict:
             elif (c := s[0]) in "ld":
                 res, s = [], s[1:]
                 while s[0] != "e":
-                    res.append(bdecode_helper(inner=True))
+                    res.append(_bdecode(inner=True))
                 s = s[1:]
                 if c == "l":
                     return res
@@ -76,7 +74,7 @@ def bdecode(b: bytes) -> str | int | list | dict:
                     return dict(zip(res[::2], res[1::2]))
         raise ValueError
 
-    return bdecode_helper()
+    return _bdecode()
 
 
 if __name__ == "__main__":
@@ -96,7 +94,9 @@ if __name__ == "__main__":
     assert bencode(["bencode", -20]) == b"l7:bencodei-20ee"
     # dict
     assert bencode({}) == b"de"
-    assert bencode({"wiki": "bencode", "meaning": 42}) == b"d7:meaningi42e4:wiki7:bencodee"
+    assert (
+        bencode({"wiki": "bencode", "meaning": 42}) == b"d7:meaningi42e4:wiki7:bencodee"
+    )
     # inner
     assert bencode({"outter": {"inner": "hello"}}) == b"d6:outterd5:inner5:helloee"
     # ENCODE all passed
@@ -115,10 +115,16 @@ if __name__ == "__main__":
     assert bdecode(b"l7:bencodei-20ee") == ["bencode", -20]
     # dict
     assert bdecode(b"de") == {}
-    assert bdecode(b"d7:meaningi42e4:wiki7:bencodee") == {"wiki": "bencode", "meaning": 42}
+    assert bdecode(b"d7:meaningi42e4:wiki7:bencodee") == {
+        "wiki": "bencode",
+        "meaning": 42,
+    }
     # inner
     assert bdecode(b"d6:outterd5:inner5:helloee") == {"outter": {"inner": "hello"}}
-    assert bdecode(b"d7:outter1d5:inner5:helloe7:outter25:worlde") == {"outter1": {"inner": "hello"}, "outter2": "world"}
+    assert bdecode(b"d7:outter1d5:inner5:helloe7:outter25:worlde") == {
+        "outter1": {"inner": "hello"},
+        "outter2": "world",
+    }
     # DECODE all passed
     print(f"{bdecode.__name__:24} \033[92m[ PASS ]\033[0m")
 
@@ -142,6 +148,10 @@ if __name__ == "__main__":
         try:
             r = bdecode(data.encode("utf-8"))
         except ValueError:
-            print(f"{'\'' + data + '\'':>10} -> {'exception':10} \033[92m[ PASS ]\033[0m")
+            print(
+                f"{'\'' + data + '\'':>10} -> {'exception':10} \033[92m[ PASS ]\033[0m"
+            )
         else:
-            print(f"{'\''+ data + '\'':>10} -> {r.__str__():10} \033[91m[ FAIL ]\033[0m")
+            print(
+                f"{'\''+ data + '\'':>10} -> {r.__str__():10} \033[91m[ FAIL ]\033[0m"
+            )
