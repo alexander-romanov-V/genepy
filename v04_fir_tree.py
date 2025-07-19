@@ -19,6 +19,17 @@ etc...
 
 # Solution 1 - my first
 
+from sys import argv
+
+
+def fir_tree(n: int): ...
+
 
 if __name__ == "__main__":
-    ...
+    try:
+        n = int(argv[1])
+    except (IndexError, ValueError):
+        print(f"Usage: {argv[0]} N\n    N - size of fir tree\n")
+        exit()
+    else:
+        fir_tree(n)
