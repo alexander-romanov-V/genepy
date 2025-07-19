@@ -31,5 +31,4 @@ if __name__ == "__main__":
     except (IndexError, ValueError):
         print(f"Usage: {argv[0]} N\n    N - size of fir tree\n")
         exit()
-    else:
-        fir_tree(n)
+    fir_tree(n)
