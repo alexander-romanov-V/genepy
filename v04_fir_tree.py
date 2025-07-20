@@ -3,7 +3,7 @@
 You'll write a Python 3 program drawing a fir tree.
 
 The size of the drawed fir tree will depend on the single parameter given to
-your program. As always, print a human error message if no parameter are 
+your program. As always, print a human error message if no parameter are
 given to your program.
 Given 0, your program should display nothing.
 
@@ -29,4 +29,5 @@ if __name__ == "__main__":
     except (IndexError, ValueError):
         print(f"Usage: {argv[0]} N\n    N - size of fir tree\n")
         exit()
-    fir_tree(n)
+    if n > 0:
+        fir_tree(n)
