@@ -195,7 +195,7 @@ my_test_func(5, 8, c="three")
 
 
 # ----------------------------------------------------------------------------
-# Декоратор со списком кортежей (исключение, обработчик)
+# Декоратор с параметром из списка кортежей (исключение, обработчик)
 # Вызывает обработчик, при соответствующем исключении внутри оборачиваемой функции
 from typing import Callable
 from functools import wraps
@@ -217,7 +217,7 @@ def deco_param(ex_lst: list[tuple]):
     return inner_wrapper
 
 def zd_handler():
-    print("Division by 0")
+    print("Division by 0!")
 
 @deco_param([(ZeroDivisionError, zd_handler)])
 def test1(a, b):
