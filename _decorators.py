@@ -209,9 +209,9 @@ def deco_param(ex_lst: list[tuple]):
                 res = func(*args, **kwargs)
                 return res
             except Exception as ex:
-                for h in ex_lst:
-                    if isinstance(ex, h[0]):
-                        h[1]()
+                for eh in ex_lst:
+                    if isinstance(ex, eh[0]):
+                        eh[1]()
             return None
         return wrapper
     return inner_wrapper
