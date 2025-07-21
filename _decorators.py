@@ -29,6 +29,7 @@ def empty_deco(func: Callable):
     def wrapper(*args, **kwargs):
         res = func(*args, **kwargs)
         return res
+
     return wrapper
 
 
@@ -41,6 +42,7 @@ def param_calls(param):
             nonlocal param
             res = func(*args, **kwargs)
             return res
+
         return inner_wrapper
 
     return wrapper
@@ -135,10 +137,13 @@ def my_func3(sleep_time: int):
 # ----------------------------------------------------------------------------
 # Кэширование вызовов
 from functools import lru_cache
+
+
 @lru_cache(maxsize=5)
 def my_long_calc():
     time.sleep(3)
     return 42
+
 
 # print(my_long_calc())
 # print(my_long_calc())
@@ -148,11 +153,13 @@ def my_long_calc():
 # Контекстный менеджер синхронный (with)
 from contextlib import contextmanager
 
+
 @contextmanager
 def ctx_manager():
     print("Hello")
     yield
     print("end")
+
 
 # with ctx_manager() as man:
 #     print("123")
@@ -163,17 +170,21 @@ def ctx_manager():
 from typing import Callable
 from functools import wraps
 
+
 def log_func(func: Callable):
     @wraps(func)
     def wrapper(*args, **kwargs):
         print(f"func {func.__name__} args {args} kwargs {kwargs}")
         res = func(*args, **kwargs)
         return res
+
     return wrapper
+
 
 @log_func
 def my_test_func(a: int, b: float, c="test"):
     return f"{a}, {b}, {c}"
+
 
 my_test_func(1, 2, "one")
 my_test_func(11, 12, c="tho")
@@ -182,3 +193,34 @@ my_test_func(5, 8, c="three")
 
 # print(len(*filter(str.isupper,open("file2.txt").read())))
 
+
+# ----------------------------------------------------------------------------
+# Декоратор со списком кортежей (исключение, обработчик)
+# Вызывает обработчик, при соответствующем исключении внутри оборачиваемой функции
+from typing import Callable
+from functools import wraps
+
+def deco_param(ex_lst: list[tuple]):
+    def inner_wrapper(func: Callable):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            nonlocal ex_lst
+            try:
+                res = func(*args, **kwargs)
+                return res
+            except Exception as ex:
+                for h in ex_lst:
+                    if isinstance(ex, h[0]):
+                        h[1]()
+            return None
+        return wrapper
+    return inner_wrapper
+
+def zd_handler():
+    print("Division by 0")
+
+@deco_param([(ZeroDivisionError, zd_handler)])
+def test1(a, b):
+    return a / b
+
+test1(1, 0)
