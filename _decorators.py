@@ -211,8 +211,8 @@ def deco_param(ex_lst: list[tuple]):
             except Exception as ex:
                 for eh in ex_lst:
                     if isinstance(ex, eh[0]):
-                        eh[1]()
-            return None
+                        return eh[1]()
+                raise ex
         return wrapper
     return inner_wrapper
 
