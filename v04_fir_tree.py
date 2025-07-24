@@ -26,32 +26,12 @@ Hbar                        1   2   3   4   5   6   7   8   9   10      = N
 """
 
 # Solution 1 - my first
-
 from sys import argv
-
-
-def fir_tree(n: int):
-    w1 = []
-    y = 1
-    for i in range(n):
-        x = y - (i + 1) // 2 * 2
-        y = x + 2 * (i + 3)
-        w1.append((x, y))
-    for b in range(n):
-        for bl in range(w1[b][0], w1[b][1] + 1, 2):
-            print(f"{'*'*bl:^{w1[-1][1]}}")
-    for b in range(n):
-        print(f"{'|'*(1 + n // 2 * 2):^{w1[-1][1]}}")
-
-
-if __name__ == "__main__":
-    fir_tree(1)
-    fir_tree(2)
-    fir_tree(3)
-    # try:
-    #     n = int(argv[1])
-    # except (IndexError, ValueError):
-    #     print(f"Usage: {argv[0]} N\n    N - size of fir tree\n")
-    #     exit()
-    # if n > 0:
-    #     fir_tree(n)
+try:
+    if (n := int(argv[1])) > 0:
+        y = 1
+        w = [(x := y - (i + 1) // 2 * 2, y := x + 2 * (i + 3)) for i in range(n)]
+        print(*(f"{'*'*bl:^{w[-1][1]}}" for b in range(n) for bl in range(w[b][0], w[b][1] + 1, 2)), sep="\n")
+        print(*(f"{'|'*(1 + n // 2 * 2):^{w[-1][1]}}" for b in range(n)), sep="\n")
+except (IndexError, ValueError):
+    print(f"Usage: {argv[0]} N\n    N - size of fir tree\n")
