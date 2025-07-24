@@ -14,6 +14,7 @@ https://sapin.hackinscience.org/?n=10
 https://sapin.hackinscience.org/?n=5
 etc...
 
+
 N                           1   2   3   4   5   6   7   8       = N
 
 число участков              1   2   3   4   5   6   7   8       = N
