@@ -36,18 +36,18 @@ def fir_tree(n: int):
     for i in range(n):
         x = y - (i + 1) // 2 * 2
         y = x + 2 * (i + 3)
-        w1.append(x)
-    wm = w1[-1] + 2 * (n + 2)
-    wb = 1 + n // 2 * 2
+        w1.append((x, y))
     for b in range(n):
-        for bl in range(w1[b], w1[b] + 2 * (b + 4), 2):
-            print(f"{'*'*bl:^{wm}}")
+        for bl in range(w1[b][0], w1[b][1] + 1, 2):
+            print(f"{'*'*bl:^{w1[-1][1]}}")
     for b in range(n):
-        print(f"{'|'*wb:^{wm}}")
+        print(f"{'|'*(1 + n // 2 * 2):^{w1[-1][1]}}")
 
 
 if __name__ == "__main__":
-    fir_tree(4)
+    fir_tree(1)
+    fir_tree(2)
+    fir_tree(3)
     # try:
     #     n = int(argv[1])
     # except (IndexError, ValueError):
