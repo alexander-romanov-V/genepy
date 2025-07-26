@@ -1,5 +1,6 @@
 """VERY HARD - Fir tree"""
 
+
 # Solution 2
 
 import sys
