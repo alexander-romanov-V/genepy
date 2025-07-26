@@ -8,7 +8,7 @@ import sys
 try:
     n = int(sys.argv[1])
 except (IndexError, ValueError):
-    print(f"Wrong or missing parameter, usage: {sys.argv[0]} INTEGER")
+    print(f"Wrong or missing parameter!\nUsage: {sys.argv[0]} INTEGER")
     sys.exit()
 
 if n == 0:
