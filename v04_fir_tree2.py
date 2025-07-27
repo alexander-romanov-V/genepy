@@ -6,8 +6,7 @@
 import sys
 
 try:
-    n = int(sys.argv[1])
-    if n == 0:
+    if (n := int(sys.argv[1])) == 0:
         sys.exit()
 except (IndexError, ValueError):
     print(f"Wrong or missing parameter!\nUsage: {sys.argv[0]} INTEGER")
