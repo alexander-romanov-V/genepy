@@ -7,12 +7,12 @@ import sys
 
 try:
     n = int(sys.argv[1])
+    if n == 0:
+        sys.exit()
 except (IndexError, ValueError):
     print(f"Wrong or missing parameter!\nUsage: {sys.argv[0]} INTEGER")
     sys.exit()
 
-if n == 0:
-    sys.exit()
 
 r = []
 l = 0
