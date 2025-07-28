@@ -2,7 +2,6 @@
 
 
 # Solution 2
-
 import sys
 
 try:
