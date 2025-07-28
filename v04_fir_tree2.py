@@ -12,7 +12,6 @@ except (IndexError, ValueError):
     print(f"Wrong or missing parameter!\nUsage: {sys.argv[0]} INTEGER")
     sys.exit()
 
-
 r = []
 l = 0
 d = 0
