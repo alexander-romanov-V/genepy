@@ -36,4 +36,12 @@ Here, user _kud mentions user nfroidure on the third line, that's what we're sea
 # Solution 1 - my first
 
 if __name__ == "__main__":
+    
+    """
+    load francejs.csv
+    filter only messagetype == 1 from column #2
+    create set of usernames from column #3
+    find pairs user - another user (from mesage column #4)
+    find most seeing pair (maybe use Counter)
+    """
     ...
