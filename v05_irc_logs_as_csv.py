@@ -35,8 +35,25 @@ Here, user _kud mentions user nfroidure on the third line, that's what we're sea
 
 # Solution 1 - my first
 
+import csv
+
 if __name__ == "__main__":
 
+    users = set()
+    messages = []
+    with open("francejs.csv", "r", encoding="UTF-16") as f:
+        reader = csv.reader(f)
+        for n, line in enumerate(reader):
+            try:
+                users.add(line[2])
+                if line[0]=="1":
+                    messages.append(line[3])
+            except:
+                print(n)
+    print(users)
+    print(messages)
+    for message in messages:
+        ...
     """
     Text algorithm:
     1. read francejs.csv
