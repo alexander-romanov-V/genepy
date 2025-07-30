@@ -38,7 +38,7 @@ Here, user _kud mentions user nfroidure on the third line, that's what we're sea
 if __name__ == "__main__":
 
     """
-    Algo:
+    Text algorithm:
     1. read francejs.csv
     2. filter only messagetype == 1 from column #1
     3. create set of usernames from column #3
