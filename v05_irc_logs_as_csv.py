@@ -48,7 +48,7 @@ if __name__ == "__main__":
                 users.add(line[2])
                 if line[0]=="1":
                     messages.append(line[3])
-            except:
+            except IndexError:
                 print(n)
     print(users)
     print(messages)
