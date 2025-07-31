@@ -42,29 +42,13 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Message:
+class SysMessage:
     user: str
     words: set
 
-
 if __name__ == "__main__":
-
-    users = set()
-    sys_msgs = []
     with open("francejs.csv", "r", encoding="UTF-16") as f:
-        reader = csv.reader(f)
-        for n, line in enumerate(reader):
-            try:
-                users.add(line[2])
-                if line[0] == "1":
-                    sys_msgs.append(Message(line[2], set(line[3].split())))
-            except IndexError:
-                print(f"Format ero at line {n+1}")
-                sys.exit(-1)
-
-    pairs = []
-    for msg in sys_msgs:
-        for mention_user in users & msg.words - set(msg.user):
-            pairs.append((msg.user, mention_user))
-
+        sys_msgs = [SysMessage(line[2], set(line[3].split())) for line in csv.reader(f) if line[0] == "1"]
+    users = set(m.user for m in sys_msgs)
+    pairs = ((msg.user, mention_user) for msg in sys_msgs for mention_user in users & msg.words - set(msg.user))
     print(*Counter(pairs).most_common(1)[0][0], sep=", ")
