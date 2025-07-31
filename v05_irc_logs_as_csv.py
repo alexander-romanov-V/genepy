@@ -38,8 +38,12 @@ import csv
 from collections import Counter
 
 if __name__ == "__main__":
-    with open("francejs.csv", "r", encoding="UTF-16") as f:
-        sys_msgs = [(line[2], set(line[3].split())) for line in csv.reader(f) if line[0] == "1"]
-    users = set(m[0] for m in sys_msgs)
-    pairs = ((msg[0], mention_user) for msg in sys_msgs for mention_user in users & msg[1] - set(msg[0]))
+    sys_msgs = []
+    users = set()
+    with open("francejs2.csv", "r", encoding="UTF-16") as f:
+        for line in csv.reader(f):
+            users.add(line[2])
+            if line[0]=="1":
+                sys_msgs.append((line[2], set(line[3].split())))
+    pairs = [(msg[0], m_user) for msg in sys_msgs for m_user in users & msg[1] - set(msg[0])]
     print(*Counter(pairs).most_common(1)[0][0], sep=", ")
