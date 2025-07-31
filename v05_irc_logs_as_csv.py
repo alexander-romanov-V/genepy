@@ -35,31 +35,36 @@ Here, user _kud mentions user nfroidure on the third line, that's what we're sea
 
 # Solution 1 - my first
 
+import sys
 import csv
+from collections import Counter
+from dataclasses import dataclass
+
+
+@dataclass
+class Message:
+    user: str
+    words: set
+
 
 if __name__ == "__main__":
 
     users = set()
-    messages = []
+    sys_msgs = []
     with open("francejs.csv", "r", encoding="UTF-16") as f:
         reader = csv.reader(f)
         for n, line in enumerate(reader):
             try:
                 users.add(line[2])
-                if line[0]=="1":
-                    messages.append(line[3])
+                if line[0] == "1":
+                    sys_msgs.append(Message(line[2], set(line[3].split())))
             except IndexError:
-                print(n)
-    print(users)
-    print(messages)
-    for message in messages:
-        ...
-    """
-    Text algorithm:
-    1. read francejs.csv
-    2. filter only messagetype == 1 from column #1
-    3. create set of usernames from column #3
-    4. find pairs user - another user (from mesage column #4)
-    5. find most seeing pair (maybe use Counter)
-    6. show result
-    """
+                print(f"Format ero at line {n+1}")
+                sys.exit(-1)
+
+    pairs = []
+    for msg in sys_msgs:
+        for mention_user in users & msg.words - set(msg.user):
+            pairs.append((msg.user, mention_user))
+
+    print(*Counter(pairs).most_common(1)[0][0], sep=", ")
