@@ -34,21 +34,12 @@ Here, user _kud mentions user nfroidure on the third line, that's what we're sea
 """
 
 # Solution 1 - my first
-
-import sys
 import csv
 from collections import Counter
-from dataclasses import dataclass
-
-
-@dataclass
-class SysMessage:
-    user: str
-    words: set
 
 if __name__ == "__main__":
     with open("francejs.csv", "r", encoding="UTF-16") as f:
-        sys_msgs = [SysMessage(line[2], set(line[3].split())) for line in csv.reader(f) if line[0] == "1"]
-    users = set(m.user for m in sys_msgs)
-    pairs = ((msg.user, mention_user) for msg in sys_msgs for mention_user in users & msg.words - set(msg.user))
+        sys_msgs = [(line[2], set(line[3].split())) for line in csv.reader(f) if line[0] == "1"]
+    users = set(m[0] for m in sys_msgs)
+    pairs = ((msg[0], mention_user) for msg in sys_msgs for mention_user in users & msg[1] - set(msg[0]))
     print(*Counter(pairs).most_common(1)[0][0], sep=", ")
