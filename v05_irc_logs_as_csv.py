@@ -34,6 +34,7 @@ Here, user _kud mentions user nfroidure on the third line, that's what we're sea
 """
 
 # Solution 1 - my first
+
 import re
 import csv
 from collections import Counter
@@ -55,6 +56,7 @@ if pairs:
 
 
 # Solution 2 - my second
+
 import re
 import csv
 from collections import Counter
