@@ -38,17 +38,29 @@ import re
 import csv
 from collections import Counter
 
-if __name__ == "__main__":
-    sys_msgs = []
-    users = set()
-    with open("francejs.csv", "r", encoding="UTF-16") as f:
-        for line in csv.reader(f):
-            users.add(line[2])
-            if line[0] == "1":
-                sys_msgs.append((line[2], set(re.split(r"\W+", line[3]))))
-    pairs = []
-    for msg in sys_msgs:
-        for mention_user in users & msg[1] - set([msg[0]]):
-            pairs.append((msg[0], mention_user))
-    if pairs:
-        print(*Counter(pairs).most_common(1)[0][0], sep=", ")
+msgs = []
+users = set()
+with open("francejs.csv", "r", encoding="UTF-16") as f:
+    for line in csv.reader(f):
+        users.add(line[2])
+        if line[0] == "1":
+            msgs.append((line[2], set(re.split(r"\W+", line[3]))))
+pairs = []
+for msg in msgs:
+    for mention_user in users & msg[1] - set([msg[0]]):
+        pairs.append((msg[0], mention_user))
+if pairs:
+    print(*Counter(pairs).most_common(1)[0][0], sep=", ")
+
+
+
+# Solution 2 - my second
+import re
+import csv
+from collections import Counter
+
+with open("francejs.csv", "r", encoding="UTF-16") as f:
+    msgs = [(line[2], set(re.split(r"\W+", line[3]))) for line in csv.reader(f) if line[0] == "1"]
+users = set(m[0] for m in msgs)
+if (pairs := ((msg[0], m_user) for msg in msgs for m_user in users & msg[1] - set([msg[0]]))):
+    print(*Counter(pairs).most_common(1)[0][0], sep=", ")
