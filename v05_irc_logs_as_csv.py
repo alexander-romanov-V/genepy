@@ -14,8 +14,8 @@ $ python3 solution.py
 mdk, sizeof
 
 Beware, I may test with another dataset (of the exact same format).
-Data format of this csv file
 
+Data format of this csv file
 There's 4 columns:
 - Message type (1 means it's a message, other values means it's a system info, we ignore them)
 - Timestamp of the message (number of seconds since 1st jan 1970 UTC)
