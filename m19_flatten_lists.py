@@ -28,6 +28,7 @@ def flatten3(a_list):
     return [y for x in a_list for y in flatten3(x)]
 
 
+
 if __name__ == "__main__":
     param = [[1], 2, [[3, 4], 5], [[[]]], [[[6]]], 7, 8, []]
     res = [1, 2, 3, 4, 5, 6, 7, 8]
