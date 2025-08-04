@@ -20,7 +20,9 @@ if __name__ == "__main__":
     ]:
         assert p(31) is True
         print(f"{p.__name__:20} \033[92m[ PASS 1 ]\033[0m")
+
         assert p(22) is True
         print(f"{p.__name__:20} \033[92m[ PASS 2 ]\033[0m")
+
         assert p(15) is False
         print(f"{p.__name__:20} \033[92m[ PASS 3 ]\033[0m\n")
