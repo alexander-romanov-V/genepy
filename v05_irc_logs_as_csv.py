@@ -1,9 +1,7 @@
 """VERY HARD - IRC logs as CSV
 
 First, download or clone the francejs git repository.
-
 https://github.com/francejs/irc-bot
-
 Then, concatenate all logs files in the logs folder into a single francejs.csv
 file. Just for your information, this file should contain more than 36,000 lines.
 
