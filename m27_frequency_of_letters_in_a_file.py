@@ -2,6 +2,7 @@
 
 # Solution 1 - my first
 import string
+
 with open("words.txt", "r", encoding="UTF-8") as file:
     text = file.read()
 n, f = 0, {}
@@ -32,6 +33,7 @@ with open("words.txt", "r", encoding="UTF-8") as file:
 
 # Solution 4
 import collections
+
 with open("words.txt", "r", encoding="UTF-8") as file:
     counter = collections.Counter(file.read())
 l = sum(counter.values())
