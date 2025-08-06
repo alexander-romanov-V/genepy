@@ -14,6 +14,7 @@ if __name__ == "__main__":
     except FileNotFoundError:
         stderr.write("Error reading input file!")
         exit(2)
+
     if r := reduce(lambda a, b: a & b, files):
         print(*r, sep="\n")
     else:
