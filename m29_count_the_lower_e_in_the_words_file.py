@@ -1,5 +1,6 @@
 """MEDIUM - Count the lower 'e' in the 'words' file"""
 
+
 # Solution 1 - my
 with open("words.txt", "r", encoding="UTF-8") as file:
     print(file.read().count("e"))
