@@ -4,6 +4,8 @@
 
 
 def gen_colors(code_size: int) -> str: ...
+    """Generate colors"""
+    return "".join([chr(ord("A") + i) for i in range(min(26, max(0, code_size)))])
 
 
 def gen_code(code_size: int, colors: str) -> str: ...
