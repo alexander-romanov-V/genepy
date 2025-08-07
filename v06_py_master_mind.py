@@ -13,7 +13,9 @@ def gen_code(code_size: int, colors: str) -> str:
     return "".join(choices(colors, k=code_size))
 
 
-def check_guess(guess: str, code_size: int, colors: str) -> bool: ...
+def check_guess(guess: str, code_size: int, colors: str) -> bool:
+    """Check guess"""
+    return len(guess) == code_size and set(guess).issubset(colors)
 
 
 print("Possible colors are ABCDEF\nCode is size 4.\nCODE = BFEB")
