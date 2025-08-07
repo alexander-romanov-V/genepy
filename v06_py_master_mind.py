@@ -29,4 +29,22 @@ def score_guess(code: str, guess: str) -> tuple:
     return (exact, partial)
 
 
+def play_cli(code_size: int, nb_colors: int):
+    """Play on the command-line"""
+    cnt = 0
+    colors = gen_colors(nb_colors)
+    code = gen_code(code_size, colors)
+    print(f"Possible colors are {colors}\nCode is size {code_size}.")
+    while True:
+        guess = input(f"{cnt} --> ").upper()
+        if check_guess(guess, code_size, colors):
+            cnt += 1
+            if guess == code:
+                print(f"Congrats, you won after {cnt} attempts !")
+                break
+            print(score_guess(code, guess))
+        else:
+            print("Wrong size or color !")
+
+
 print("Possible colors are ABCDEF\nCode is size 4.\nCODE = BFEB")
