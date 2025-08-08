@@ -12,3 +12,13 @@ def test_gen_colors():
     assert gen_colors(25) == "ABCDEFGHIJKLMNOPQRSTUVWXY"
     assert gen_colors(26) == "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     assert gen_colors(295) == "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+
+def test_gen_code():
+    """Unit test gen_code() function"""
+    for i in [(5, "ABCDEF"), (5, "A"), (1, "ABCDE"), (2, "AB")]:
+        x = gen_code(i[0], i[1])
+        assert len(x) == i[0]
+        for n in range(i[0]):
+            assert x[n] in i[1]
+
