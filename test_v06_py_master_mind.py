@@ -30,3 +30,12 @@ def test_check_guess():
     assert check_guess("AABB", 4, "ABCDEF") is True
     assert check_guess("AB", 4, "ABCDEF") is False
     assert check_guess("Z", 1, "ABCDEF") is False
+
+
+def test_score_guess():
+    """Unit test score_guess() function"""
+    assert score_guess("ABCD", "ABCD") == (4, 0)
+    assert score_guess("AAAA", "ABCD") == (1, 0)
+    assert score_guess("AADA", "ABCD") == (1, 1)
+    assert score_guess("ADDA", "ABCD") == (1, 1)
+    assert score_guess("ADDB", "ABCD") == (1, 2)
