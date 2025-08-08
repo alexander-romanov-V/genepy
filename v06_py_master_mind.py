@@ -13,22 +13,30 @@ next guess.
 
 from random import choices
 from sys import argv
+
+
 def gen_colors(code_size: int) -> str:
     """Generate colors"""
     return "".join([chr(ord("A") + i) for i in range(min(26, max(0, code_size)))])
+
+
 def gen_code(code_size: int, colors: str) -> str:
     """Generate the code"""
     return "".join(choices(colors, k=code_size))
+
+
 def check_guess(guess: str, code_size: int, colors: str) -> bool:
     """Check guess"""
     return len(guess) == code_size and set(guess).issubset(colors)
+
+
 def score_guess(code: str, guess: str) -> tuple:
     """Score guess"""
     exact = sum(1 for i in range(len(code)) if code[i] == guess[i])
-    partial = sum(
-        1 for i in range(len(code)) if code[i] != guess[i] and guess[i] in code
-    )
+    partial = sum(1 for i in range(len(code)) if code[i] != guess[i] and guess[i] in code)
     return (exact, partial)
+
+
 def play_cli(code_size: int, nb_colors: int):
     """Play on the command-line"""
     cnt = 0
@@ -45,6 +53,8 @@ def play_cli(code_size: int, nb_colors: int):
             print(score_guess(code, guess))
         else:
             print("Wrong size or color !")
+
+
 if __name__ == "__main__":
     try:
         code_size = int(argv[1])
