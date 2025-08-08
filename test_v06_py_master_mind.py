@@ -22,3 +22,11 @@ def test_gen_code():
         for n in range(i[0]):
             assert x[n] in i[1]
 
+
+def test_check_guess():
+    """Unit test check_guess() function"""
+    assert check_guess("ZZZZ", 4, "ABCDEF") is False
+    assert check_guess("EEBBAA", 4, "ABCDEF") is False
+    assert check_guess("AABB", 4, "ABCDEF") is True
+    assert check_guess("AB", 4, "ABCDEF") is False
+    assert check_guess("Z", 1, "ABCDEF") is False
