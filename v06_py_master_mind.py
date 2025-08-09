@@ -33,7 +33,9 @@ def check_guess(guess: str, code_size: int, colors: str) -> bool:
 def score_guess(code: str, guess: str) -> tuple:
     """Score guess"""
     exact = sum(1 for i in range(len(code)) if code[i] == guess[i])
-    partial = sum(1 for i in range(len(code)) if code[i] != guess[i] and guess[i] in code)
+    partial = sum(
+        1 for i in range(len(code)) if code[i] != guess[i] and guess[i] in code
+    )
     return (exact, partial)
 
 
