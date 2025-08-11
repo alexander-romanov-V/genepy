@@ -26,12 +26,14 @@ Hbar                        1   2   3   4   5   6   7   8   9   10      = N
 """
 
 # Solution 1 - my first
+
 from sys import argv
+
 try:
     if (n := int(argv[1])) > 0:
         y = 1
         w = [(x := y - (i + 1) // 2 * 2, y := x + 2 * (i + 3)) for i in range(n)]
-        print(*(f"{'*'*bl:^{w[-1][1]}}" for b in range(n) for bl in range(w[b][0], w[b][1] + 1, 2)), sep="\n")
-        print(*(f"{'|'*(1 + n // 2 * 2):^{w[-1][1]}}" for b in range(n)), sep="\n")
+        print(*(f"{'*'*bl:^{w[-1][1]}}" for b in range(n) for bl in range(w[b][0], w[b][1] + 1, 2)),
+              *(f"{'|'*(1 + n // 2 * 2):^{w[-1][1]}}" for b in range(n)), sep="\n")
 except (IndexError, ValueError):
     print(f"Usage: {argv[0]} N\n    N - size of fir tree\n")
