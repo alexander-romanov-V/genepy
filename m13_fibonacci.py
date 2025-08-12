@@ -33,11 +33,8 @@ if __name__ == "__main__":
         print(fn)
         if fn > 100:
             break
-
-    print(fibonacci(1))
-    print(fibonacci(2))
-    print(fibonacci(5))
-
-    print(fibonacci2(1))
-    print(fibonacci2(2))
-    print(fibonacci2(5))
+    for p in (fibonacci, fibonacci2):
+        print(f"{p.__name__:20}")
+        print(p(1))
+        print(p(2))
+        print(p(5))
