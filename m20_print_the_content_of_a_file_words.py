@@ -21,6 +21,7 @@ def print_file3(file_name):
 
 
 if __name__ == "__main__":
-    print_file("README.md")
-    print_file2("README.md")
-    print_file3("README.md")
+    
+    for p in (print_file, print_file2, print_file3):
+        print(f"{p.__name__:20}")
+        p("README.md")
