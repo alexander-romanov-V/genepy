@@ -24,13 +24,11 @@ def how_to_pay2(amount, currency):
 EURO = [1, 2, 5, 10, 20, 50, 100, 200, 500]
 
 if __name__ == "__main__":
-    # {500: 1}  # means: To pay 500€: give one bill of 500€
-    print(how_to_pay(500, EURO))
-    # {10: 1}  # means: To pay 10€: give one bill of 10€
-    print(how_to_pay(10, EURO))
-    # {100: 1, 20: 1, 2: 1, 1: 1}  # give 1 bill of 100€, one bill of 20€, one coin of 2€, and one coin of 1€.
-    print(how_to_pay(123, EURO))
-
-    print(how_to_pay2(500, EURO))
-    print(how_to_pay2(10, EURO))
-    print(how_to_pay2(123, EURO))
+    for p in (how_to_pay, how_to_pay2):
+        print(f"{p.__name__:20}")
+        # {500: 1}  # means: To pay 500€: give one bill of 500€
+        print(p(500, EURO))
+        # {10: 1}  # means: To pay 10€: give one bill of 10€
+        print(p(10, EURO))
+        # {100: 1, 20: 1, 2: 1, 1: 1}  # give 1 bill of 100€, one bill of 20€, one coin of 2€, and one coin of 1€.
+        print(p(123, EURO))
