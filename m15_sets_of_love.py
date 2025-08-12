@@ -30,24 +30,17 @@ def affair_meet2(bob, alice, silvester):
 
 
 if __name__ == "__main__":
-    assert love_meet(
-        ["IV", "III", "II", "XX", "II", "XX"],
-        ["II", "IV", "II", "XIX", "XV", "IV", "II"],
-    ) == {"II", "IV"}
+    for p in (love_meet, love_meet2):
+        assert p(
+            ["IV", "III", "II", "XX", "II", "XX"],
+            ["II", "IV", "II", "XIX", "XV", "IV", "II"],
+        ) == {"II", "IV"}
+        print(f"{p.__name__:20} \033[92m[ PASS ]\033[0m")
 
-    assert affair_meet(
-        ["IV", "III", "II", "XX", "II", "XX"],
-        ["II", "IV", "II", "XIX", "XV", "IV", "II"],
-        ["XVIII", "XIX", "III", "I", "III", "XVIII"],
-    ) == {"XIX"}
-
-    assert love_meet2(
-        ["IV", "III", "II", "XX", "II", "XX"],
-        ["II", "IV", "II", "XIX", "XV", "IV", "II"],
-    ) == {"II", "IV"}
-
-    assert affair_meet2(
-        ["IV", "III", "II", "XX", "II", "XX"],
-        ["II", "IV", "II", "XIX", "XV", "IV", "II"],
-        ["XVIII", "XIX", "III", "I", "III", "XVIII"],
-    ) == {"XIX"}
+    for p in (affair_meet, affair_meet2):
+        assert p(
+            ["IV", "III", "II", "XX", "II", "XX"],
+            ["II", "IV", "II", "XIX", "XV", "IV", "II"],
+            ["XVIII", "XIX", "III", "I", "III", "XVIII"],
+        ) == {"XIX"}
+        print(f"{p.__name__:20} \033[92m[ PASS ]\033[0m")
