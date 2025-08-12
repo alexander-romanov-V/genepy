@@ -20,8 +20,7 @@ def print_file3(file_name):
     print(open(file_name, encoding="UTF-8").read())
 
 
-if __name__ == "__main__":
-    
+if __name__ == "__main__":    
     for p in (print_file, print_file2, print_file3):
         print(f"{p.__name__:20}")
         p("README.md")
