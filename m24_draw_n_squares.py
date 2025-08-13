@@ -16,10 +16,8 @@ def draw_n_squares2(n):
 
 
 if __name__ == "__main__":
-    print(draw_n_squares(1))
-    print(draw_n_squares(3))
-    print(draw_n_squares(5))
-
-    print(draw_n_squares2(1))
-    print(draw_n_squares2(3))
-    print(draw_n_squares2(5))
+    for p in (draw_n_squares, draw_n_squares2):
+        print(f"{p.__name__:20}")
+        print(p(1))
+        print(p(3))
+        print(p(5))
