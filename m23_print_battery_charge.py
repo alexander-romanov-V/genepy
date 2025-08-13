@@ -8,8 +8,5 @@ def battery_charge(p: int) -> None:
 
 
 if __name__ == "__main__":
-    battery_charge(0)
-    battery_charge(5)
-    battery_charge(9)
-    battery_charge(11)
-    battery_charge(100)
+    for n in (0, 5, 6, 9, 11, 100):
+        battery_charge(n)
