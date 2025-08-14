@@ -13,12 +13,14 @@ the_list = [
     430158267,
 ]
 
+
 # Solution 1
 max_value = the_list[0]
 for e in the_list:
     if e > max_value:
         max_value = e
 print(max_value)
+
 
 # Solution 2
 print(max(the_list))
