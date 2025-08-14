@@ -134,6 +134,7 @@ def my_func3(sleep_time: int):
 # print(my_func3.__name__)
 # print(my_func3.__doc__)
 
+
 # ----------------------------------------------------------------------------
 # Кэширование вызовов
 from functools import lru_cache
