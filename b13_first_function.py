@@ -1,5 +1,6 @@
 """BASIC - First function"""
 
+
 # Solution 1
 import math
 def circle_perimeter(radius: float) -> float:
