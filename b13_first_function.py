@@ -15,10 +15,8 @@ def circle_perimeter2(radius: float) -> float:
 
 
 if __name__ == "__main__":
-    print(circle_perimeter(1))
-    print(circle_perimeter(10))
-    print(circle_perimeter(100))
-
-    print(circle_perimeter2(1))
-    print(circle_perimeter2(10))
-    print(circle_perimeter2(100))
+    for p in (circle_perimeter, circle_perimeter2):
+        print(f"{p.__name__:20}")
+        for n in (1, 10, 100):
+            print(p(n))
+            
