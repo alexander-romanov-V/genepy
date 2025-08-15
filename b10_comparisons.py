@@ -19,6 +19,7 @@ max_value = the_list[0]
 for e in the_list:
     if e > max_value:
         max_value = e
+
 print(max_value)
 
 
