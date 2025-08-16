@@ -8,6 +8,7 @@ for a in ascii_lowercase:
         if a != b:
             print(a + b)
 
+
 # Solution 2
 from itertools import product
 from string import ascii_lowercase
