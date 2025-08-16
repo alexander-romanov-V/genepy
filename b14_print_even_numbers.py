@@ -21,6 +21,6 @@ def print_even_numbers3(start, stop):
 
 
 if __name__ == "__main__":
-    print_even_numbers(0, 10)
-    print_even_numbers2(0, 10)
-    print_even_numbers3(0, 10)
+    for p in (print_even_numbers, print_even_numbers2, print_even_numbers3):
+        print(f"{p.__name__:20}")
+        p(0, 10)
