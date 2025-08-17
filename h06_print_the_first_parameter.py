@@ -1,5 +1,6 @@
 """HARD - Print the first parameter"""
 
+
 # Solution 1 - my
 from sys import argv
 if len(argv) == 2:
