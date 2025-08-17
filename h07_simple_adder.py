@@ -1,5 +1,6 @@
 """HARD - Simple adder"""
 
+
 # Solution 1
 from sys import argv
 if len(argv) == 3:
