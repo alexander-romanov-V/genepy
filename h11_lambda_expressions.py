@@ -31,6 +31,7 @@ def filtered2(items, key):
     return filter(key, items)
 
 
+
 if __name__ == "__main__":
     test()
 
@@ -39,9 +40,11 @@ if __name__ == "__main__":
     print(", ".join([str(x) for x in filtered(range(101), lambda x: x % 5 == 0)]))
     print(", ".join([str(x) for x in filtered(range(101), lambda x: x % 15 == 0)]))
 
+
     # Solution 1b - my
     for d in (3, 5, 15):
         print(*filtered(range(101), lambda x: x % d == 0), sep=", ")
+
 
     # Solution 2
     for d in (3, 5, 15):
