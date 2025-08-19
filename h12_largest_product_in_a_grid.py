@@ -92,7 +92,6 @@ import itertools
 import functools
 import operator
 
-
 def solution3():
     """Resolve the 11th euler problem"""
     h = len(e)
