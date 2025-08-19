@@ -4,7 +4,6 @@
 from random import choices
 from string import ascii_lowercase, ascii_uppercase, digits
 
-
 def pwgen(length: int, with_digits=True, with_uppercase=True) -> str:
     """
     Returns a password with lowercase letters
@@ -39,7 +38,6 @@ def pwgen(length: int, with_digits=True, with_uppercase=True) -> str:
 from random import choices, choice, shuffle
 from string import ascii_lowercase, ascii_uppercase, digits
 
-
 def pwgen2(length, with_digits=True, with_uppercase=True):
     """
     Returns a password with lowercase letters
@@ -56,7 +54,6 @@ def pwgen2(length, with_digits=True, with_uppercase=True):
     :return: A string with random password
     :rtype: str
     """
-    
     res = choices(
         ascii_lowercase + digits * with_digits + ascii_uppercase * with_uppercase,
         k=length - with_digits - with_uppercase - 1,
