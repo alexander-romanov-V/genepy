@@ -17,6 +17,7 @@ def sidebyside(left, right, width=79):
 
 # Solution 2 - my second
 import itertools
+
 def sidebyside2(left, right, width=79):
     """Combines two strings so they are displayed side by side,
     separated by a column of pipe (|) symbols"""
@@ -32,6 +33,7 @@ def sidebyside2(left, right, width=79):
 
 # Solution 3 - improved 1
 import itertools
+
 def sidebyside3(left, right, width=79):
     """Combines two strings so they are displayed side by side,
     separated by a column of pipe (|) symbols"""
@@ -43,6 +45,7 @@ def sidebyside3(left, right, width=79):
 
 # Solution 4 - improved 2
 import itertools
+
 def sidebyside4(left, right, width=79):
     """Combines two strings so they are displayed side by side,
     separated by a column of pipe (|) symbols"""
