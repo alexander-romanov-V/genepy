@@ -7,8 +7,10 @@ for i in range(1 + 0x10FFFF):
         print(chr(i))
 
 
+
 # Solution 2 - my second
 print(*[chr(i) for i in range(230000) if "HEART" in __import__("unicodedata").name(chr(i), "")], sep="")
+
 
 
 # Solution 3
