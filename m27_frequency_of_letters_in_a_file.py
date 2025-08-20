@@ -14,6 +14,7 @@ for c in f:
     print(f"{c}: {f[c]/sum(f.values()):.02f}")
 
 
+
 # Solution 2 - my second
 with open("words.txt", "r", encoding="UTF-8") as file:
     text = file.read()
@@ -25,10 +26,12 @@ with open("words.txt", "r", encoding="UTF-8") as file:
     print(*(f"{c}: {f[c]/sum(f.values()):.02f}" for c in f), sep="\n")
 
 
+
 # Solution 3 - my third
 with open("words.txt", "r", encoding="UTF-8") as file:
     text = file.read()
     print(*(f"{c}: {text.count(c)/len(text):.02f}" for c in {*filter(str.islower, text)}), sep="\n")
+
 
 
 # Solution 4
