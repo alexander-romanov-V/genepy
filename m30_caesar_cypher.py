@@ -20,6 +20,7 @@ def caesar_cypher_decrypt(s, key):
     return caesar_cypher_encrypt(s, -key)
 
 
+
 if __name__ == "__main__":
     assert caesar_cypher_encrypt("a", 2) == "c"
     assert caesar_cypher_decrypt("c", 2) == "a"
