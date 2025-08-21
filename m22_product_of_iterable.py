@@ -1,10 +1,12 @@
 """MEDIUM - Product of iterable"""
 
 
+
 # Solution 1 - my
 def mul(numbers):
     """Product of iterable"""
     return __import__("math").prod(numbers)
+
 
 
 # Solution 2
@@ -13,16 +15,19 @@ def mul2(numbers):
     return __import__("functools").reduce(__import__("operator").mul, numbers)
 
 
+
 # Solution 3
 def mul3(numbers):
     """Product of iterable"""
     return __import__("functools").reduce(lambda m, n: m * n, numbers)
 
 
+
 # Solution 4
 def mul4(numbers):
     """Product of iterable"""
     return eval("*".join(str(el) for el in numbers))
+
 
 
 if __name__ == "__main__":
