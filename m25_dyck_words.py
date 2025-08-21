@@ -1,6 +1,7 @@
 """MEDIUM - Draw N Squares"""
 
 
+
 # Solution 1 - my first
 def is_a_dyck_word(word: str) -> bool:
     """A Dyck word have to be "well-parenthesized"""
@@ -18,6 +19,7 @@ def is_a_dyck_word(word: str) -> bool:
     return True
 
 
+
 # Solution 2 - my second
 def is_a_dyck_word2(word: str) -> bool:
     """A Dyck word have to be "well-parenthesized"""
@@ -29,6 +31,7 @@ def is_a_dyck_word2(word: str) -> bool:
         if x < 0:
             return False
     return x == 0
+
 
 
 # Solution 3
