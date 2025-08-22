@@ -1,16 +1,19 @@
 """MEDIUM - Adam Number"""
 
 
+
 # Solution 1 - my
 def check_adam_number(num):
     """Check if num is an Adam number"""
     return str(num**2) == str(int(str(num)[::-1]) ** 2)[::-1]
 
 
+
 # Solution 2
 def check_adam_number2(num):
     """Check if num is an Adam number"""
     return num**2 == int(str(int(str(num)[::-1]) ** 2)[::-1])
+
 
 
 if __name__ == "__main__":
