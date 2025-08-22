@@ -1,5 +1,6 @@
 """MEDIUM - Exceptions"""
 
+
 # Solution 1
 import sys
 
