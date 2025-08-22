@@ -1,6 +1,7 @@
 """MEDIUM - Select students"""
 
 
+
 # Solution 1
 def de_flat(a_list):
     """Yield items from any nested iterable"""
@@ -16,10 +17,12 @@ def flatten(a_list):
     return list(de_flat(a_list))
 
 
+
 # Solution 2
 def flatten2(a_list):
     """Returns a list of lists (of any depth) returns a flattened version of it"""
     return sum(([x] if not isinstance(x, list) else flatten2(x) for x in a_list), [])
+
 
 
 # Solution 3
@@ -28,6 +31,7 @@ def flatten3(a_list):
     if not isinstance(a_list, list):
         return [a_list]
     return [y for x in a_list for y in flatten3(x)]
+
 
 
 if __name__ == "__main__":
