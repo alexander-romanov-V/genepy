@@ -1,6 +1,7 @@
 """MEDIUM - Select students"""
 
 
+
 # Solution 1
 def select_student(students, threshold):
     """Telling apart accepted and refused students according to a threshold."""
@@ -16,6 +17,7 @@ def select_student(students, threshold):
     }
 
 
+
 # Solution 2
 def select_student2(students, threshold):
     """Telling apart accepted and refused students according to a threshold."""
@@ -29,6 +31,7 @@ def select_student2(students, threshold):
     }
 
 
+
 # Solution 3
 from operator import itemgetter
 from bisect import bisect_left
@@ -39,6 +42,7 @@ def select_student3(students, threshold):
     students.sort(key=itemgetter(1))
     res = bisect_left([s[1] for s in students], threshold)
     return {"Accepted": students[res:][::-1], "Refused": students[0:res]}
+
 
 
 if __name__ == "__main__":
