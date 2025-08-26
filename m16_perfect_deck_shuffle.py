@@ -58,13 +58,6 @@ def perfect_shuffle6(deck: list):
 
 
 if __name__ == "__main__":
-    # assert perfect_shuffle([1, 2, 3, 4, 5, 6]) == [1, 4, 2, 5, 3, 6]
-    # assert perfect_shuffle2([1, 2, 3, 4, 5, 6]) == [1, 4, 2, 5, 3, 6]
-    # assert perfect_shuffle3([1, 2, 3, 4, 5, 6]) == [1, 4, 2, 5, 3, 6]
-    # assert perfect_shuffle4([1, 2, 3, 4, 5, 6]) == [1, 4, 2, 5, 3, 6]
-    # assert perfect_shuffle5([1, 2, 3, 4, 5, 6]) == [1, 4, 2, 5, 3, 6]
-    # assert perfect_shuffle6([1, 2, 3, 4, 5, 6]) == [1, 4, 2, 5, 3, 6]
-
     for p in [
         perfect_shuffle,
         perfect_shuffle2,
