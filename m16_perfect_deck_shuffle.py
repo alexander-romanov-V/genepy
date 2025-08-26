@@ -1,6 +1,7 @@
 """MEDIUM - Perfect deck shuffle"""
 
 
+
 # Solution 1
 def perfect_shuffle(deck: list):
     """Splitting a deck of cards into equal halves, and perfectly interleaving them."""
@@ -9,6 +10,7 @@ def perfect_shuffle(deck: list):
     for i in range(l):
         res += deck[i], deck[l + i]
     return res
+
 
 
 # Solution 2
