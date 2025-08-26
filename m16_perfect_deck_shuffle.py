@@ -38,11 +38,13 @@ def perfect_shuffle4(deck: list):
     return shuffled
 
 
+
 # Solution 5
 def perfect_shuffle5(deck: list):
     """Splitting a deck of cards into equal halves, and perfectly interleaving them."""
     l = len(deck) // 2
     return [deck[i] for r in range(l) for i in (r, r + l)]
+
 
 
 # Solution 6
