@@ -20,11 +20,13 @@ def perfect_shuffle2(deck: list):
     return list(__import__("itertools").chain(*zip(deck[:l], deck[l:])))
 
 
+
 # Solution 3
 def perfect_shuffle3(deck: list):
     """Splitting a deck of cards into equal halves, and perfectly interleaving them."""
     l = len(deck) // 2
     return [c for tup in zip(deck[:l], deck[l:]) for c in tup]
+
 
 
 # Solution 4
