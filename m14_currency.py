@@ -12,6 +12,7 @@ def how_to_pay(amount, currency):
     return pay
 
 
+
 # Solution 2 - my second
 def how_to_pay2(amount, currency):
     """Returns a dict describing the easiest way to pay amount with the given currency"""
