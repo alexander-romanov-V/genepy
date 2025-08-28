@@ -1,6 +1,7 @@
 """MEDIUM - Currency"""
 
 
+
 # Solution 1 - my first
 def how_to_pay(amount, currency):
     """Returns a dict describing the easiest way to pay amount with the given currency"""
