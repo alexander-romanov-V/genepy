@@ -1,6 +1,7 @@
 """MEDIUM - Sets of love"""
 
 
+
 # Solution 1
 def love_meet(bob, alice):
     """Taking bob and alice's daily paths as two lists
