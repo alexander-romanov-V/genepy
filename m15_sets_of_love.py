@@ -31,6 +31,7 @@ def affair_meet2(bob, alice, silvester):
     return set(alice) & set(silvester) - set(bob)
 
 
+
 if __name__ == "__main__":
     for p in (love_meet, love_meet2):
         assert p(
