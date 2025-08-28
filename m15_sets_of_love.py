@@ -16,6 +16,7 @@ def affair_meet(bob, alice, silvester):
     return set(alice).intersection(silvester).difference(bob)
 
 
+
 # Solution 2 - using set operators
 def love_meet2(bob, alice):
     """Taking bob and alice's daily paths as two lists
