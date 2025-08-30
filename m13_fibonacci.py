@@ -11,6 +11,7 @@ def fibonacci_gen():
         a, b = b, a + b
 
 
+
 # Solution 1 - my first
 def fibonacci(n):
     """Fibonacci sequence generator"""
