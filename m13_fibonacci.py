@@ -1,6 +1,7 @@
 """MEDIUM - The Fibonacci sequence"""
 
 
+
 # Solution 0 - my
 def fibonacci_gen():
     """Fibonacci sequence generator"""
