@@ -21,6 +21,7 @@ def fibonacci(n):
     return f[:n]
 
 
+
 # Solution 1 - my second
 def fibonacci2(n):
     """Fibonacci sequence generator"""
