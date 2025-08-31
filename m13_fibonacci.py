@@ -31,6 +31,7 @@ def fibonacci2(n):
     return f[:n]
 
 
+
 if __name__ == "__main__":
     for fn in fibonacci_gen():
         print(fn)
