@@ -3,6 +3,7 @@
 import unicodedata
 
 
+
 # Solution 1 - my first
 def normalize(s):
     """Removes diacritics, combining characters, and non letters chars and sort"""
