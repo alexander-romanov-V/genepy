@@ -23,6 +23,7 @@ def is_anagram2(left, right):
         == sorted([c for c in unicodedata.normalize("NFD", right.lower()) if c.isalpha()])
 
 
+
 if __name__ == "__main__":
     print(is_anagram("funeral", "real fun"))
     print(is_anagram("Madam Curie", "Radium came"))
