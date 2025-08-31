@@ -15,6 +15,7 @@ def is_anagram(left, right):
     return normalize(left) == normalize(right)
 
 
+
 # Solution 1 - my second
 def is_anagram2(left, right):
     """Returns True if the letters of one word are a rearrangement of the letters of the other"""
