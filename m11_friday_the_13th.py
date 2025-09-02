@@ -29,6 +29,7 @@ def friday_the_13th2(today=datetime.date.today()):
     return format(d, "%Y-%m-%d")
 
 
+
 # Solution 3 - easy
 import datetime
 def friday_the_13th3(today=datetime.datetime.now().date()):
