@@ -29,6 +29,7 @@ if __name__ == "__main__":
     print(is_anagram("Madam Curie", "Radium came"))
     print(is_anagram("crâné", "crane"))
 
+
     print(is_anagram2("funeral", "real fun"))
     print(is_anagram2("Madam Curie", "Radium came"))
     print(is_anagram2("crâné", "crane"))
