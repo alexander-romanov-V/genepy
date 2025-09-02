@@ -18,6 +18,7 @@ def friday_the_13th(today=datetime.datetime.today().date()):
     return str(today)
 
 
+
 # Solution 2 - tricky (sometimes can fail?)
 import datetime
 def friday_the_13th2(today=datetime.date.today()):
