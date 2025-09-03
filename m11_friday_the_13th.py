@@ -39,6 +39,7 @@ def friday_the_13th3(today=datetime.datetime.now().date()):
     return str(today)
 
 
+
 # Solution 4 - good enough
 import datetime
 def friday_the_13th4(today=datetime.datetime.today().date()):
