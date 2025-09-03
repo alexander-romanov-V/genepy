@@ -51,6 +51,7 @@ def friday_the_13th4(today=datetime.datetime.today().date()):
     return str(today)
 
 
+
 if __name__ == "__main__":
     print(friday_the_13th())
     print(friday_the_13th2())
