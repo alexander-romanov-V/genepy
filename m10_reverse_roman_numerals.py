@@ -25,6 +25,7 @@ def from_roman_numeral2(roman_numeral: str) -> int:
     return sum(ns)
 
 
+
 # Solution 3
 def from_roman_numeral3(roman_numeral: str) -> int:
     """Returns the value of a given roman numeral"""
