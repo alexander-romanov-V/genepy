@@ -13,6 +13,7 @@ def from_roman_numeral1(roman_numeral: str) -> int:
     return sum(ns)  # type: ignore
 
 
+
 # Solution 2
 def from_roman_numeral2(roman_numeral: str) -> int:
     """Returns the value of a given roman numeral"""
