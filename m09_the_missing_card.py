@@ -1,6 +1,7 @@
 """MEDIUM - The missing card"""
 
 
+
 # Solution 1
 def missing_card(cards):
     """Returns the missing card"""
