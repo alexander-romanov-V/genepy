@@ -22,6 +22,7 @@ def missing_card2(cards):
     return list(set(deck) - set(cards.split(" "))).pop()
 
 
+
 # Solution 3
 def missing_card3(cards):
     """Returns the missing card"""
