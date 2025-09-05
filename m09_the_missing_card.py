@@ -14,6 +14,7 @@ def missing_card(cards):
     return deck[0]
 
 
+
 # Solution 2
 def missing_card2(cards):
     """Returns the missing card"""
