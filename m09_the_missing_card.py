@@ -30,6 +30,7 @@ def missing_card3(cards):
     return f"{min(colors, key=colors.count)}{min(values, key=values.count)}"
 
 
+
 # Solution 4
 def missing_card4(cards):
     """Returns the missing card"""
