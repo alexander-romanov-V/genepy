@@ -6,6 +6,7 @@
 print(__import__("datetime").datetime.now().strftime("Today is %Y-%m-%d and it is %H:%M:%S."))
 
 
+
 # Solution 2
 import datetime
 print(f"{datetime.datetime.now():Today is %Y-%m-%d and it is %H:%M:%S}.")
