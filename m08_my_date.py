@@ -12,6 +12,7 @@ import datetime
 print(f"{datetime.datetime.now():Today is %Y-%m-%d and it is %H:%M:%S}.")
 
 
+
 # Solution 3
 today = __import__("datetime").datetime.today()
 print(f"Today is {today.year:04d}-{today.month:02d}-{today.day:02d} \
