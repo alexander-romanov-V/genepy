@@ -1,6 +1,7 @@
 """MEDIUM - Display the date and time"""
 
 
+
 # Solution 1
 print(__import__("datetime").datetime.now().strftime("Today is %Y-%m-%d and it is %H:%M:%S."))
 
