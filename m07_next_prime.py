@@ -5,6 +5,7 @@ Provide a script that computes, then prints the first prime number greater than 
 """
 
 
+
 # Solution 1 - too slow for large numbers
 # def next_prime():
 #     """Returns next prime"""
