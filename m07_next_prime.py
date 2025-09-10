@@ -34,6 +34,8 @@ def is_prime(n: int) -> bool:
         i += 6
     return True
 
+
+
 if __name__ == "__main__":
     # Solution 1 - too slow for large numbers
     # for p in next_prime():
