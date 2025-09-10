@@ -1,6 +1,9 @@
-"""MEDIUM - Next prime"""
+"""MEDIUM - Next prime
 
-# Provide a script that computes, then prints the first prime number greater than 100_000_000.
+Provide a script that computes, then prints the first prime number greater than 100_000_000.
+
+"""
+
 
 # Solution 1 - too slow for large numbers
 # def next_prime():
