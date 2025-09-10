@@ -19,6 +19,7 @@ Provide a script that computes, then prints the first prime number greater than 
 #         i += 2
 
 
+
 # Solution 2
 def is_prime(n: int) -> bool:
     """Primarily test using 6k+-1 optimization."""
