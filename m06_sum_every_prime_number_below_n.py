@@ -15,6 +15,7 @@ def is_prime(n: int) -> bool:
             return False
         i += 6
     return True
+
 def sum_primes(n: int) -> int:
     """Sum of every prime number below n"""
     return sum(i for i in range(n) if is_prime(i))
