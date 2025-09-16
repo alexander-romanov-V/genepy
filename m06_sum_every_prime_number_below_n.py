@@ -21,6 +21,7 @@ def sum_primes(n: int) -> int:
     return sum(i for i in range(n) if is_prime(i))
 
 
+
 # Solution 2
 def sum_primes2(n: int) -> int:
     """Sum of every prime number below n"""
