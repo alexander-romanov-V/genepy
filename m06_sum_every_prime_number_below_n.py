@@ -28,6 +28,7 @@ def sum_primes2(n: int) -> int:
     return sum(i for i in range(2, n) if not any(i % z == 0 for z in range(2, int(i**0.5) + 1)))
 
 
+
 # Solution 3
 def sum_primes3(n: int) -> int:
     """Sum of every prime number below n"""
