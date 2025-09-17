@@ -1,5 +1,6 @@
 """MEDIUM - Sort students"""
 
+
 # Represent student as a pair of (mark, full_name), so a tuple of two elements.
 students = [(85, "Susan"), (6, "Joshua"), (37, "Jeanette")]
 
