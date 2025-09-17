@@ -41,6 +41,7 @@ def sum_primes3(n: int) -> int:
     return 2 + sum((2 * i + 1) for i in range(1, n // 2) if sieve[i])
 
 
+
 # Solution 4
 def sum_primes4(n: int) -> int:
     """Sum of every prime number below n"""
