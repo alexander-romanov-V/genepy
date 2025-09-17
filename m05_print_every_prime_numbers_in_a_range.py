@@ -1,6 +1,7 @@
 """MEDIUM - Print every prime numbers in a range"""
 
 
+
 # Solution 1
 def is_prime(n: int) -> bool:
     """Primarily test using 6k+-1 optimization."""
