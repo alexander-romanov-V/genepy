@@ -56,6 +56,7 @@ def sum_primes4(n: int) -> int:
     return prime_sum
 
 
+
 if __name__ == "__main__":
     print(sum_primes(10))
     print(sum_primes2(10))
