@@ -17,5 +17,6 @@ def is_prime(n: int) -> bool:
     return True
 
 
+
 if __name__ == "__main__":
     print(*[i for i in range(10000, 10051) if is_prime(i)], sep=", ")
