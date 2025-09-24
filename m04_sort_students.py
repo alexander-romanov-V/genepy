@@ -6,6 +6,7 @@
 students = [(85, "Susan"), (6, "Joshua"), (37, "Jeanette")]
 
 
+
 # Solution 1
 def sort_by_mark(my_class):
     """Take a list of students and returns a copy of it sorted by mark in descending order"""
