@@ -17,6 +17,7 @@ def is_prime(n: int) -> bool:
     return True
 
 
+
 # Solution 2
 def is_prime2(n):
     """Primarily test with less optimization."""
