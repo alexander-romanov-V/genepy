@@ -1,6 +1,7 @@
 """MEDIUM - Check if a number is prime"""
 
 
+
 # Solution 1
 def is_prime(n: int) -> bool:
     """Primarily test using 6k+-1 optimization."""
