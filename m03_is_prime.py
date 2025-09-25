@@ -31,6 +31,7 @@ def is_prime2(n):
     return True
 
 
+
 # Solution 3
 def is_prime3(n):
     """True if n is prime"""
