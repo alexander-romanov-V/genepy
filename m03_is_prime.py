@@ -40,7 +40,6 @@ def is_prime3(n):
 
 
 if __name__ == "__main__":
-    
     for p in (is_prime, is_prime2, is_prime3):
         assert p(1) is False
         assert p(2) is True
