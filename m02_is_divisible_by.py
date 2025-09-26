@@ -5,6 +5,7 @@
 # that are divisible by 7 and whose digits sum are divisible by 3.
 
 
+
 # Solution 1
 def digit_sum(n):
     """Returns digits sum of n"""
