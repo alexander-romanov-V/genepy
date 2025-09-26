@@ -13,6 +13,7 @@ def digit_sum(n):
 print(*(n for n in range(0, 1001, 7) if digit_sum(n) % 3 == 0), sep="\n")
 
 
+
 # Solution 1b
 digit_sum = lambda n: n if n < 10 else digit_sum(n // 10) + n % 10
 print(*(n for n in range(0, 1001, 7) if digit_sum(n) % 3 == 0), sep="\n")
