@@ -34,5 +34,6 @@ print(*(n for n in range(0, 1001, 7) if sum(map(int, str(n))) % 3 == 0), sep="\n
 print(*(n for n in range(0, 1001, 21)), sep="\n")
 
 
+
 # Solution 3b
 print("\n".join(f"{n}" for n in range(0, 1001, 21)))
