@@ -16,6 +16,7 @@ def dist2(points):
     return maxi - mini
 
 
+
 # Solution 3 (just for fun)
 dist3 = lambda points: max(points) - min(points)
 
