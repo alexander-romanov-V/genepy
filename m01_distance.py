@@ -1,6 +1,7 @@
 """MEDIUM - Distance"""
 
 
+
 # Solution 1
 def dist(points):
     """Returns max distance"""
