@@ -8,6 +8,7 @@ def dist(points):
     return max(points) - min(points)
 
 
+
 # Solution 2
 def dist2(points):
     """Returns max distance"""
