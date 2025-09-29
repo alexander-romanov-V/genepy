@@ -21,6 +21,7 @@ def dist2(points):
 dist3 = lambda points: max(points) - min(points)
 
 
+
 if __name__ == "__main__":
     print(dist([1, 2, 3]))
     print(dist([1, 2, 3, 2.5]))
