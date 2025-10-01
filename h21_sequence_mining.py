@@ -68,6 +68,7 @@ def seq_mining3(seqs: list, ratio: float, max_len: int):
     return Counter(c for c in count.elements() if count[c] >= ratio * len(seqs))
 
 
+
 if __name__ == "__main__":
     data = ["ABCD", "ABABC", "BCAABCD"]
 
