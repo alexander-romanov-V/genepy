@@ -33,6 +33,7 @@ def seq_mining(data: list[str], min_p: float, max_l: int) -> Counter[str]:
     return +res
 
 
+
 # Solution 2 - my second
 def seq_mining2(data: list[str], min_p: float, max_l: int) -> Counter[str]:
     """Find number of sequences according passed patterns"""
