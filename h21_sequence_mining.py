@@ -4,6 +4,7 @@
 from collections import Counter
 
 
+
 # Solution 1 - my first
 def seq_mining(data: list[str], min_p: float, max_l: int) -> Counter[str]:
     """
